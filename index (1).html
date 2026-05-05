@@ -382,32 +382,9 @@ body.lang-th .worship-time {
   gap: 14px;
   cursor: pointer;
   transition: transform 0.2s;
-  position: relative;
 }
 
 .sermon-item:active { transform: scale(0.98); }
-
-/* 카테고리 태그 (우측 상단) */
-.sermon-tag {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 3px 9px;
-  border-radius: 10px;
-  background: var(--teal);
-  color: var(--bg);
-}
-
-.sermon-tag.tag-thought {
-  background: var(--accent);
-}
-
-.sermon-tag.tag-bible {
-  background: var(--ink-soft);
-}
 
 .sermon-thumb {
   width: 64px;
@@ -423,20 +400,7 @@ body.lang-th .worship-time {
   position: relative;
 }
 
-/* 단상은 따뜻한 골드 그라디언트 */
-.sermon-thumb.thumb-thought {
-  background: linear-gradient(135deg, #d9c9a8 0%, #b8860b 100%);
-  color: var(--white);
-}
-
-/* 성경 풀이는 깊은 베이지 + 청록 */
-.sermon-thumb.thumb-bible {
-  background: linear-gradient(135deg, #4a3f33 0%, #1d6b66 100%);
-  color: var(--accent);
-}
-
-/* 설교에만 재생 버튼 표시 */
-.sermon-thumb:not(.thumb-thought):not(.thumb-bible)::after {
+.sermon-thumb::after {
   content: "▶";
   position: absolute;
   bottom: 4px;
@@ -453,7 +417,7 @@ body.lang-th .worship-time {
   padding-left: 2px;
 }
 
-.sermon-info { flex: 1; min-width: 0; padding-right: 50px; }
+.sermon-info { flex: 1; min-width: 0; }
 
 .sermon-date {
   font-size: 11px;
@@ -711,8 +675,8 @@ body.lang-th .cal-num { font-family: 'Sarabun', sans-serif; }
   color: var(--ink-soft);
 }
 
-/* ===== Monthly Prayer Card ===== */
-.prayer-monthly-card {
+/* ===== Word card ===== */
+.word-card {
   background: var(--white);
   border-radius: var(--radius);
   padding: 18px;
@@ -720,87 +684,27 @@ body.lang-th .cal-num { font-family: 'Sarabun', sans-serif; }
   border-top: 3px solid var(--teal);
 }
 
-.prayer-monthly-header {
+.word-pair {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  padding-bottom: 14px;
-  margin-bottom: 14px;
+  padding: 8px 0;
   border-bottom: 1px dashed var(--line);
+  gap: 10px;
 }
 
-.prayer-monthly-icon {
-  font-size: 22px;
-}
+.word-pair:last-child { border-bottom: none; }
 
-.prayer-monthly-title {
-  font-family: 'Gowun Batang', serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--teal);
-  letter-spacing: -0.01em;
-}
-
-body.lang-th .prayer-monthly-title {
-  font-family: 'Sarabun', sans-serif;
-}
-
-.prayer-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.prayer-item {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-
-.prayer-num {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  background: var(--teal);
-  color: var(--bg);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Gowun Batang', serif;
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 1px;
-}
-
-body.lang-th .prayer-num {
-  font-family: 'Sarabun', sans-serif;
-}
-
-.prayer-content {
-  flex: 1;
-  font-size: 13px;
-  line-height: 1.65;
-  color: var(--ink-soft);
-}
-
-.prayer-monthly-footer {
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px dashed var(--line);
-  text-align: center;
-  font-size: 12px;
-  color: var(--ink-mute);
-}
-
-.prayer-monthly-footer a {
-  color: var(--accent-deep);
-  text-decoration: none;
+.word-ko {
   font-weight: 600;
-  margin-left: 4px;
+  font-size: 14px;
+}
+
+.word-th {
+  font-family: 'Sarabun', sans-serif;
+  color: var(--teal);
+  font-size: 14px;
+  text-align: right;
 }
 
 /* ===== Offering ===== */
@@ -1137,7 +1041,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
   <div class="quick-grid">
     <a class="quick-item" href="#sermons">
       <span class="quick-icon">📖</span>
-      <div class="quick-label"><span class="ko-text">말씀과 묵상</span><span class="th-text">พระวจนะและการใคร่ครวญ</span></div>
+      <div class="quick-label"><span class="ko-text">설교</span><span class="th-text">คำเทศนา</span></div>
     </a>
     <a class="quick-item" href="#board">
       <span class="quick-icon">📷</span>
@@ -1159,9 +1063,9 @@ section:nth-child(6) { animation-delay: 0.2s; }
       <span class="quick-icon">✋</span>
       <div class="quick-label"><span class="ko-text">새가족</span><span class="th-text">สมาชิกใหม่</span></div>
     </a>
-    <a class="quick-item" href="#monthly-prayer">
-      <span class="quick-icon">🕊️</span>
-      <div class="quick-label"><span class="ko-text">이달의 기도</span><span class="th-text">คำอธิษฐานประจำเดือน</span></div>
+    <a class="quick-item" href="#words">
+      <span class="quick-icon">🇰🇷🇹🇭</span>
+      <div class="quick-label"><span class="ko-text">한태단어</span><span class="th-text">คำศัพท์</span></div>
     </a>
     <a class="quick-item" href="#offering">
       <span class="quick-icon">💝</span>
@@ -1198,16 +1102,13 @@ section:nth-child(6) { animation-delay: 0.2s; }
 <section id="sermons">
   <div class="section-head">
     <h2 class="section-title">
-      <span class="ko-text">말씀과 묵상</span>
-      <span class="th-text">พระวจนะและการใคร่ครวญ</span>
+      <span class="ko-text">주일 설교</span>
+      <span class="th-text">คำเทศนาวันอาทิตย์</span>
     </h2>
     <a href="#" class="section-more"><span class="ko-text">전체</span><span class="th-text">ดูทั้งหมด</span></a>
   </div>
   <div class="sermon-list">
     <article class="sermon-item">
-      <span class="sermon-tag">
-        <span class="ko-text">설교</span><span class="th-text">คำเทศนา</span>
-      </span>
       <div class="sermon-thumb">✦</div>
       <div class="sermon-info">
         <div class="sermon-date">2026.05.03 · SUNDAY</div>
@@ -1216,31 +1117,6 @@ section:nth-child(6) { animation-delay: 0.2s; }
       </div>
     </article>
     <article class="sermon-item">
-      <span class="sermon-tag tag-thought">
-        <span class="ko-text">단상</span><span class="th-text">บันทึก</span>
-      </span>
-      <div class="sermon-thumb thumb-thought">✎</div>
-      <div class="sermon-info">
-        <div class="sermon-date">2026.04.28 · MON</div>
-        <h3 class="sermon-title"><span class="ko-text">한 형제의 식탁에서 만난 은혜</span><span class="th-text">พระคุณที่พบบนโต๊ะอาหารของพี่น้องคนหนึ่ง</span></h3>
-        <div class="sermon-passage"><span class="ko-text">목회 단상</span><span class="th-text">บันทึกการเลี้ยงดู</span></div>
-      </div>
-    </article>
-    <article class="sermon-item">
-      <span class="sermon-tag tag-bible">
-        <span class="ko-text">성경</span><span class="th-text">พระคัมภีร์</span>
-      </span>
-      <div class="sermon-thumb thumb-bible">✚</div>
-      <div class="sermon-info">
-        <div class="sermon-date">2026.04.20 · SAT</div>
-        <h3 class="sermon-title"><span class="ko-text">구약의 '나그네 사랑' 율법</span><span class="th-text">บัญญัติ 'รักคนต่างถิ่น' ในพันธสัญญาเดิม</span></h3>
-        <div class="sermon-passage">Leviticus 19:33-34 · เลวีนิติ</div>
-      </div>
-    </article>
-    <article class="sermon-item">
-      <span class="sermon-tag">
-        <span class="ko-text">설교</span><span class="th-text">คำเทศนา</span>
-      </span>
       <div class="sermon-thumb">✦</div>
       <div class="sermon-info">
         <div class="sermon-date">2026.04.26 · SUNDAY</div>
@@ -1387,60 +1263,30 @@ section:nth-child(6) { animation-delay: 0.2s; }
   </div>
 </section>
 
-<!-- Monthly Prayer Topics -->
-<section id="monthly-prayer">
+<!-- Korean-Thai words -->
+<section id="words">
   <div class="section-head">
     <h2 class="section-title">
-      <span class="ko-text">이달의 기도제목</span>
-      <span class="th-text">คำอธิษฐานประจำเดือน</span>
+      <span class="ko-text">오늘의 한·태 단어</span>
+      <span class="th-text">คำศัพท์ไทย-เกาหลีวันนี้</span>
     </h2>
-    <span class="section-more" style="cursor: default;">2026.05</span>
   </div>
-  <div class="prayer-monthly-card">
-    <div class="prayer-monthly-header">
-      <span class="prayer-monthly-icon">🕊️</span>
-      <div class="prayer-monthly-title">
-        <span class="ko-text">함께 기도해주세요</span>
-        <span class="th-text">โปรดอธิษฐานร่วมกัน</span>
-      </div>
+  <div class="word-card">
+    <div class="word-pair">
+      <span class="word-ko">은혜</span>
+      <span class="word-th">พระคุณ (프라쿤)</span>
     </div>
-    <ol class="prayer-list">
-      <li class="prayer-item">
-        <span class="prayer-num">1</span>
-        <div class="prayer-content">
-          <span class="ko-text">성도들이 서로 사랑하며 하나 되는 공동체로 세워지도록</span>
-          <span class="th-text">เพื่อพี่น้องคริสตจักรจะรักซึ่งกันและกัน และถูกสร้างให้เป็นชุมชนที่เป็นน้ำหนึ่งใจเดียวกัน</span>
-        </div>
-      </li>
-      <li class="prayer-item">
-        <span class="prayer-num">2</span>
-        <div class="prayer-content">
-          <span class="ko-text">일대일 제자훈련이 풍성한 열매를 맺도록</span>
-          <span class="th-text">เพื่อการสร้างสาวกแบบตัวต่อตัวจะเกิดผลอันอุดมสมบูรณ์</span>
-        </div>
-      </li>
-      <li class="prayer-item">
-        <span class="prayer-num">3</span>
-        <div class="prayer-content">
-          <span class="ko-text">BBS 신학생들이 말씀 위에 든든히 세워지도록</span>
-          <span class="th-text">เพื่อนักศึกษา BBS จะถูกสร้างให้ตั้งมั่นคงอยู่บนพระวจนะของพระเจ้า</span>
-        </div>
-      </li>
-      <li class="prayer-item">
-        <span class="prayer-num">4</span>
-        <div class="prayer-content">
-          <span class="ko-text">선교사 가정 위에 건강과 은혜가 넘치도록</span>
-          <span class="th-text">เพื่อสุขภาพและพระคุณจะเปี่ยมล้นเหนือครอบครัวมิชชันนารี</span>
-        </div>
-      </li>
-    </ol>
-    <div class="prayer-monthly-footer">
-      <span class="ko-text">개인 기도제목은</span>
-      <span class="th-text">สำหรับคำอธิษฐานส่วนตัว</span>
-      <a href="#prayer">
-        <span class="ko-text">여기서 신청하세요 →</span>
-        <span class="th-text">ส่งคำขอที่นี่ →</span>
-      </a>
+    <div class="word-pair">
+      <span class="word-ko">감사합니다</span>
+      <span class="word-th">ขอบคุณค่ะ/ครับ</span>
+    </div>
+    <div class="word-pair">
+      <span class="word-ko">사랑</span>
+      <span class="word-th">ความรัก (콰암락)</span>
+    </div>
+    <div class="word-pair">
+      <span class="word-ko">평안하세요</span>
+      <span class="word-th">สันติสุข (싼띠쑥)</span>
     </div>
   </div>
 </section>
@@ -1550,7 +1396,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
   </a>
   <a class="nav-item" href="#sermons">
     <span class="nav-icon">📖</span>
-    <span class="nav-label"><span class="ko-text">묵상</span><span class="th-text">พระวจนะ</span></span>
+    <span class="nav-label"><span class="ko-text">설교</span><span class="th-text">คำเทศนา</span></span>
   </a>
   <a class="nav-item" href="#board">
     <span class="nav-icon">📷</span>
