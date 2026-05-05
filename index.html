@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -29,523 +30,559 @@
   --radius: 14px;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { scroll-behavior: smooth; }
+- { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Noto Sans KR', 'Noto Sans Thai', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.6;
-  font-size: 15px;
-  max-width: 480px;
-  margin: 0 auto;
-  position: relative;
-  min-height: 100vh;
-  padding-bottom: 80px;
+font-family: ‘Noto Sans KR’, ‘Noto Sans Thai’, sans-serif;
+background: var(–bg);
+color: var(–ink);
+line-height: 1.6;
+font-size: 15px;
+max-width: 480px;
+margin: 0 auto;
+position: relative;
+min-height: 100vh;
+padding-bottom: 80px;
 }
 
 body.lang-th {
-  font-family: 'Sarabun', 'Noto Sans Thai', sans-serif;
+font-family: ‘Sarabun’, ‘Noto Sans Thai’, sans-serif;
 }
 
 /* ===== Top bar with logo ===== */
 .topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  background: var(--white);
-  border-bottom: 1px solid var(--line-soft);
-  position: sticky;
-  top: 0;
-  z-index: 90;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 16px;
+background: var(–white);
+border-bottom: 1px solid var(–line-soft);
+position: sticky;
+top: 0;
+z-index: 90;
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--ink);
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+color: var(–ink);
 }
 
 .brand-logo {
-  height: 44px;
-  width: auto;
-  object-fit: contain;
-  display: block;
+height: 44px;
+width: auto;
+object-fit: contain;
+display: block;
 }
 
 .brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
+display: flex;
+flex-direction: column;
+line-height: 1.1;
 }
 
 .brand-name {
-  font-family: 'Gowun Batang', serif;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+font-family: ‘Gowun Batang’, serif;
+font-size: 15px;
+font-weight: 700;
+letter-spacing: -0.01em;
 }
 
 body.lang-th .brand-name {
-  font-family: 'Sarabun', sans-serif;
-  font-size: 15px;
+font-family: ‘Sarabun’, sans-serif;
+font-size: 15px;
 }
 
 .brand-en {
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  color: var(--accent-deep);
-  margin-top: 2px;
-  font-weight: 600;
+font-size: 9px;
+letter-spacing: 0.18em;
+color: var(–accent-deep);
+margin-top: 2px;
+font-weight: 600;
 }
 
 .lang-toggle {
-  background: var(--ink);
-  color: var(--bg);
-  border: none;
-  padding: 8px 12px;
-  border-radius: 18px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
+background: var(–ink);
+color: var(–bg);
+border: none;
+padding: 8px 12px;
+border-radius: 18px;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 0.05em;
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 5px;
+white-space: nowrap;
 }
 
 .lang-toggle::before {
-  content: "🌐";
-  font-size: 10px;
+content: “🌐”;
+font-size: 10px;
 }
 
 /* ===== Hero with photo ===== */
 .hero {
-  position: relative;
-  height: 380px;
-  overflow: hidden;
-  color: var(--bg);
+position: relative;
+height: 380px;
+overflow: hidden;
+color: var(–bg);
 }
 
 .hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.78) saturate(1.1);
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: brightness(0.78) saturate(1.1);
 }
 
 .hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    rgba(14, 58, 55, 0.45) 0%,
-    rgba(14, 58, 55, 0.30) 40%,
-    rgba(14, 58, 55, 0.85) 100%);
+position: absolute;
+inset: 0;
+background: linear-gradient(180deg,
+rgba(14, 58, 55, 0.45) 0%,
+rgba(14, 58, 55, 0.30) 40%,
+rgba(14, 58, 55, 0.85) 100%);
 }
 
 .hero-content {
-  position: absolute;
-  inset: 0;
-  padding: 28px 24px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+position: absolute;
+inset: 0;
+padding: 28px 24px 30px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
 }
 
 .hero-mark {
-  font-family: 'Gowun Batang', serif;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-  font-weight: 700;
+font-family: ‘Gowun Batang’, serif;
+font-size: 10px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 10px;
+font-weight: 700;
 }
 
 .hero h1 {
-  font-family: 'Gowun Batang', serif;
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+font-family: ‘Gowun Batang’, serif;
+font-size: 26px;
+font-weight: 700;
+line-height: 1.25;
+margin-bottom: 6px;
+letter-spacing: -0.01em;
+text-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 body.lang-th .hero h1 {
-  font-family: 'Sarabun', sans-serif;
-  font-size: 24px;
+font-family: ‘Sarabun’, sans-serif;
+font-size: 24px;
 }
 
 .hero-sub {
-  font-size: 13px;
-  opacity: 0.92;
-  font-weight: 300;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+font-size: 13px;
+opacity: 0.92;
+font-weight: 300;
+letter-spacing: 0.02em;
+text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
 /* ===== Welcome message (intro) ===== */
 .welcome {
-  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal) 100%);
-  color: var(--bg);
-  padding: 26px 24px 28px;
-  position: relative;
+background: linear-gradient(180deg, var(–teal-deep) 0%, var(–teal) 100%);
+color: var(–bg);
+padding: 26px 24px 28px;
+position: relative;
 }
 
 .welcome::after {
-  content: "✦";
-  position: absolute;
-  bottom: 14px;
-  right: 24px;
-  color: var(--accent);
-  font-size: 18px;
-  opacity: 0.6;
+content: “✦”;
+position: absolute;
+bottom: 14px;
+right: 24px;
+color: var(–accent);
+font-size: 18px;
+opacity: 0.6;
 }
 
 .welcome-text {
-  font-size: 14px;
-  line-height: 1.75;
-  font-weight: 300;
-  letter-spacing: 0.01em;
-  border-left: 2px solid var(--accent);
-  padding-left: 14px;
+font-size: 14px;
+line-height: 1.75;
+font-weight: 300;
+letter-spacing: 0.01em;
+border-left: 2px solid var(–accent);
+padding-left: 14px;
 }
 
 body.lang-th .welcome-text {
-  line-height: 1.85;
+line-height: 1.85;
 }
 
 .hero-verse {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(250, 246, 238, 0.18);
-  font-size: 13px;
-  font-style: italic;
-  opacity: 0.85;
-  font-weight: 300;
-  line-height: 1.7;
+margin-top: 18px;
+padding-top: 18px;
+border-top: 1px solid rgba(250, 246, 238, 0.18);
+font-size: 13px;
+font-style: italic;
+opacity: 0.85;
+font-weight: 300;
+line-height: 1.7;
 }
 
 .hero-verse small {
-  display: block;
-  margin-top: 4px;
-  color: var(--accent);
-  font-style: normal;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  font-weight: 600;
+display: block;
+margin-top: 4px;
+color: var(–accent);
+font-style: normal;
+font-size: 10px;
+letter-spacing: 0.15em;
+font-weight: 600;
 }
 
 /* ===== Section base ===== */
 section {
-  padding: 28px 20px 8px;
+padding: 28px 20px 8px;
 }
 
 .section-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 16px;
+display: flex;
+align-items: baseline;
+justify-content: space-between;
+margin-bottom: 16px;
 }
 
 .section-title {
-  font-family: 'Gowun Batang', serif;
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.01em;
+font-family: ‘Gowun Batang’, serif;
+font-size: 19px;
+font-weight: 700;
+color: var(–ink);
+letter-spacing: -0.01em;
 }
 
 body.lang-th .section-title {
-  font-family: 'Sarabun', sans-serif;
+font-family: ‘Sarabun’, sans-serif;
 }
 
 .section-title::before {
-  content: "";
-  display: inline-block;
-  width: 4px;
-  height: 16px;
-  background: var(--accent);
-  margin-right: 10px;
-  vertical-align: -2px;
-  border-radius: 2px;
+content: “”;
+display: inline-block;
+width: 4px;
+height: 16px;
+background: var(–accent);
+margin-right: 10px;
+vertical-align: -2px;
+border-radius: 2px;
 }
 
 .section-more {
-  font-size: 12px;
-  color: var(--ink-soft);
-  text-decoration: none;
-  letter-spacing: 0.02em;
+font-size: 12px;
+color: var(–ink-soft);
+text-decoration: none;
+letter-spacing: 0.02em;
 }
 
 .section-more::after {
-  content: " →";
-  color: var(--accent);
+content: “ →”;
+color: var(–accent);
 }
 
 /* ===== Quick menu grid ===== */
 .quick-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 10px;
 }
 
 .quick-item {
-  background: var(--white);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius);
-  padding: 16px 6px 12px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  color: var(--ink);
-  display: block;
+background: var(–white);
+border: 1px solid var(–line-soft);
+border-radius: var(–radius);
+padding: 16px 6px 12px;
+text-align: center;
+cursor: pointer;
+transition: all 0.2s ease;
+text-decoration: none;
+color: var(–ink);
+display: block;
 }
 
 .quick-item:active {
-  transform: scale(0.95);
-  background: var(--bg-warm);
+transform: scale(0.95);
+background: var(–bg-warm);
 }
 
 .quick-icon {
-  font-size: 22px;
-  margin-bottom: 6px;
-  display: block;
+font-size: 22px;
+margin-bottom: 6px;
+display: block;
 }
 
 .quick-label {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-  color: var(--ink-soft);
+font-size: 11px;
+font-weight: 500;
+letter-spacing: -0.01em;
+line-height: 1.3;
+color: var(–ink-soft);
 }
 
 /* ===== Worship time card ===== */
 .worship-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  border-left: 3px solid var(--accent);
+background: var(–white);
+border-radius: var(–radius);
+padding: 20px;
+box-shadow: var(–shadow);
+border-left: 3px solid var(–accent);
 }
 
 .worship-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px dashed var(--line);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 0;
+border-bottom: 1px dashed var(–line);
 }
 
 .worship-row:last-child { border-bottom: none; }
 
 .worship-name {
-  font-weight: 500;
-  font-size: 14px;
+font-weight: 500;
+font-size: 14px;
 }
 
 .worship-time {
-  font-family: 'Gowun Batang', serif;
-  font-size: 14px;
-  color: var(--accent-deep);
-  font-weight: 700;
-  letter-spacing: 0.02em;
+font-family: ‘Gowun Batang’, serif;
+font-size: 14px;
+color: var(–accent-deep);
+font-weight: 700;
+letter-spacing: 0.02em;
 }
 
 body.lang-th .worship-time {
-  font-family: 'Sarabun', sans-serif;
+font-family: ‘Sarabun’, sans-serif;
 }
 
 /* ===== Sermon list ===== */
 .sermon-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+display: flex;
+flex-direction: column;
+gap: 12px;
 }
 
 .sermon-item {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
-  display: flex;
-  gap: 14px;
-  cursor: pointer;
-  transition: transform 0.2s;
+background: var(–white);
+border-radius: var(–radius);
+padding: 16px;
+box-shadow: var(–shadow);
+display: flex;
+gap: 14px;
+cursor: pointer;
+transition: transform 0.2s;
+position: relative;
 }
 
 .sermon-item:active { transform: scale(0.98); }
 
+/* 카테고리 태그 (우측 상단) */
+.sermon-tag {
+position: absolute;
+top: 12px;
+right: 12px;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 0.08em;
+padding: 3px 9px;
+border-radius: 10px;
+background: var(–teal);
+color: var(–bg);
+}
+
+.sermon-tag.tag-thought {
+background: var(–accent);
+}
+
+.sermon-tag.tag-bible {
+background: var(–ink-soft);
+}
+
 .sermon-thumb {
-  width: 64px;
-  height: 64px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-soft) 100%);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  font-size: 24px;
-  position: relative;
+width: 64px;
+height: 64px;
+border-radius: 10px;
+background: linear-gradient(135deg, var(–teal) 0%, var(–teal-soft) 100%);
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(–accent);
+font-size: 24px;
+position: relative;
 }
 
-.sermon-thumb::after {
-  content: "▶";
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  background: var(--bg);
-  color: var(--ink);
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  font-size: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 2px;
+/* 단상은 따뜻한 골드 그라디언트 */
+.sermon-thumb.thumb-thought {
+background: linear-gradient(135deg, #d9c9a8 0%, #b8860b 100%);
+color: var(–white);
 }
 
-.sermon-info { flex: 1; min-width: 0; }
+/* 성경 풀이는 깊은 베이지 + 청록 */
+.sermon-thumb.thumb-bible {
+background: linear-gradient(135deg, #4a3f33 0%, #1d6b66 100%);
+color: var(–accent);
+}
+
+/* 설교에만 재생 버튼 표시 */
+.sermon-thumb:not(.thumb-thought):not(.thumb-bible)::after {
+content: “▶”;
+position: absolute;
+bottom: 4px;
+right: 4px;
+background: var(–bg);
+color: var(–ink);
+width: 18px;
+height: 18px;
+border-radius: 50%;
+font-size: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+padding-left: 2px;
+}
+
+.sermon-info { flex: 1; min-width: 0; padding-right: 50px; }
 
 .sermon-date {
-  font-size: 11px;
-  color: var(--accent-deep);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
+font-size: 11px;
+color: var(–accent-deep);
+font-weight: 500;
+letter-spacing: 0.05em;
+margin-bottom: 4px;
 }
 
 .sermon-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 4px;
-  line-height: 1.4;
-  color: var(--ink);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 4px;
+line-height: 1.4;
+color: var(–ink);
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
 }
 
 .sermon-passage {
-  font-size: 11px;
-  color: var(--ink-soft);
-  font-style: italic;
+font-size: 11px;
+color: var(–ink-soft);
+font-style: italic;
 }
 
 /* ===== Board posts ===== */
 .post-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+display: flex;
+flex-direction: column;
+gap: 14px;
 }
 
 .post-item {
-  background: var(--white);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
+background: var(–white);
+border-radius: var(–radius);
+overflow: hidden;
+box-shadow: var(–shadow);
 }
 
 .post-image {
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(135deg, var(--bg-warm), var(--line));
-  position: relative;
-  overflow: hidden;
+width: 100%;
+height: 200px;
+background: linear-gradient(135deg, var(–bg-warm), var(–line));
+position: relative;
+overflow: hidden;
 }
 
 .post-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
 }
 
 .post-image-tag {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: rgba(14, 58, 55, 0.9);
-  color: var(--bg);
-  font-size: 10px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 12px;
-  letter-spacing: 0.05em;
-  backdrop-filter: blur(4px);
+position: absolute;
+top: 12px;
+left: 12px;
+background: rgba(14, 58, 55, 0.9);
+color: var(–bg);
+font-size: 10px;
+font-weight: 600;
+padding: 4px 10px;
+border-radius: 12px;
+letter-spacing: 0.05em;
+backdrop-filter: blur(4px);
 }
 
 .post-body { padding: 14px 16px 16px; }
 
 .post-meta {
-  font-size: 11px;
-  color: var(--accent-deep);
-  margin-bottom: 6px;
-  letter-spacing: 0.03em;
+font-size: 11px;
+color: var(–accent-deep);
+margin-bottom: 6px;
+letter-spacing: 0.03em;
 }
 
 .post-title {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 8px;
-  color: var(--ink);
+font-size: 15px;
+font-weight: 600;
+line-height: 1.4;
+margin-bottom: 8px;
+color: var(–ink);
 }
 
 .post-excerpt {
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.5;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+font-size: 13px;
+color: var(–ink-soft);
+line-height: 1.5;
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
 }
 
 /* ===== Share buttons ===== */
 .share-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-top: 1px solid var(--line-soft);
-  background: var(--bg);
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 10px 16px;
+border-top: 1px solid var(–line-soft);
+background: var(–bg);
 }
 
 .share-label {
-  font-size: 10px;
-  color: var(--ink-soft);
-  margin-right: 4px;
-  letter-spacing: 0.05em;
+font-size: 10px;
+color: var(–ink-soft);
+margin-right: 4px;
+letter-spacing: 0.05em;
 }
 
 .share-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  transition: transform 0.15s;
-  font-weight: 700;
-  color: var(--white);
+width: 30px;
+height: 30px;
+border-radius: 50%;
+border: none;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 13px;
+transition: transform 0.15s;
+font-weight: 700;
+color: var(–white);
 }
 
 .share-btn:active { transform: scale(0.9); }
@@ -553,389 +590,449 @@ body.lang-th .worship-time {
 .share-btn.kakao { background: #fee500; color: #3a1d1d; }
 .share-btn.line { background: #06c755; }
 .share-btn.tiktok { background: #000; }
-.share-btn.copy { background: var(--ink-soft); }
+.share-btn.copy { background: var(–ink-soft); }
 
 /* ===== Prayer card ===== */
 .prayer-card {
-  background: linear-gradient(135deg, var(--white) 0%, var(--bg-warm) 100%);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 18px;
-  text-align: center;
+background: linear-gradient(135deg, var(–white) 0%, var(–bg-warm) 100%);
+border: 1px solid var(–line);
+border-radius: var(–radius);
+padding: 18px;
+text-align: center;
 }
 
 .prayer-bg {
-  background-image: url('images/prayer-laying-hands.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: var(--radius);
-  padding: 24px 18px;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  color: var(--bg);
+background-image: url(‘images/prayer-laying-hands.jpg’);
+background-size: cover;
+background-position: center;
+border-radius: var(–radius);
+padding: 24px 18px;
+position: relative;
+overflow: hidden;
+text-align: center;
+color: var(–bg);
 }
 
 .prayer-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(14, 58, 55, 0.92) 0%, rgba(29, 107, 102, 0.85) 100%);
+content: “”;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(14, 58, 55, 0.92) 0%, rgba(29, 107, 102, 0.85) 100%);
 }
 
 .prayer-bg > * {
-  position: relative;
-  z-index: 1;
+position: relative;
+z-index: 1;
 }
 
 .prayer-icon {
-  font-size: 28px;
-  margin-bottom: 10px;
+font-size: 28px;
+margin-bottom: 10px;
 }
 
 .prayer-text {
-  font-size: 13px;
-  line-height: 1.65;
-  margin-bottom: 14px;
-  opacity: 0.95;
+font-size: 13px;
+line-height: 1.65;
+margin-bottom: 14px;
+opacity: 0.95;
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: var(--white);
-  border: none;
-  padding: 11px 28px;
-  border-radius: 22px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  letter-spacing: 0.02em;
-  box-shadow: 0 3px 8px rgba(184, 134, 11, 0.35);
-  text-decoration: none;
-  display: inline-block;
+background: var(–accent);
+color: var(–white);
+border: none;
+padding: 11px 28px;
+border-radius: 22px;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+letter-spacing: 0.02em;
+box-shadow: 0 3px 8px rgba(184, 134, 11, 0.35);
+text-decoration: none;
+display: inline-block;
 }
 
 .btn-primary:active { transform: translateY(1px); }
 
 /* ===== Calendar mini ===== */
 .cal-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
+background: var(–white);
+border-radius: var(–radius);
+padding: 16px;
+box-shadow: var(–shadow);
 }
 
 .cal-event {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px dashed var(--line);
+display: flex;
+gap: 14px;
+align-items: center;
+padding: 10px 0;
+border-bottom: 1px dashed var(–line);
 }
 
 .cal-event:last-child { border-bottom: none; }
 
 .cal-date {
-  width: 44px;
-  text-align: center;
-  flex-shrink: 0;
-  background: var(--bg-warm);
-  border-radius: 8px;
-  padding: 6px 0;
+width: 44px;
+text-align: center;
+flex-shrink: 0;
+background: var(–bg-warm);
+border-radius: 8px;
+padding: 6px 0;
 }
 
 .cal-day {
-  font-size: 9px;
-  color: var(--accent-deep);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+font-size: 9px;
+color: var(–accent-deep);
+font-weight: 600;
+letter-spacing: 0.1em;
+text-transform: uppercase;
 }
 
 .cal-num {
-  font-family: 'Gowun Batang', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1;
+font-family: ‘Gowun Batang’, serif;
+font-size: 20px;
+font-weight: 700;
+color: var(–ink);
+line-height: 1;
 }
 
-body.lang-th .cal-num { font-family: 'Sarabun', sans-serif; }
+body.lang-th .cal-num { font-family: ‘Sarabun’, sans-serif; }
 
 .cal-info { flex: 1; }
 
 .cal-title {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 2px;
+font-size: 13px;
+font-weight: 600;
+margin-bottom: 2px;
 }
 
 .cal-time {
-  font-size: 11px;
-  color: var(--ink-soft);
+font-size: 11px;
+color: var(–ink-soft);
 }
 
-/* ===== Word card ===== */
-.word-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 18px;
-  box-shadow: var(--shadow);
-  border-top: 3px solid var(--teal);
+/* ===== Monthly Prayer Card ===== */
+.prayer-monthly-card {
+background: var(–white);
+border-radius: var(–radius);
+padding: 18px;
+box-shadow: var(–shadow);
+border-top: 3px solid var(–teal);
 }
 
-.word-pair {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px dashed var(--line);
-  gap: 10px;
+.prayer-monthly-header {
+display: flex;
+align-items: center;
+gap: 10px;
+padding-bottom: 14px;
+margin-bottom: 14px;
+border-bottom: 1px dashed var(–line);
 }
 
-.word-pair:last-child { border-bottom: none; }
-
-.word-ko {
-  font-weight: 600;
-  font-size: 14px;
+.prayer-monthly-icon {
+font-size: 22px;
 }
 
-.word-th {
-  font-family: 'Sarabun', sans-serif;
-  color: var(--teal);
-  font-size: 14px;
-  text-align: right;
+.prayer-monthly-title {
+font-family: ‘Gowun Batang’, serif;
+font-size: 14px;
+font-weight: 700;
+color: var(–teal);
+letter-spacing: -0.01em;
+}
+
+body.lang-th .prayer-monthly-title {
+font-family: ‘Sarabun’, sans-serif;
+}
+
+.prayer-list {
+list-style: none;
+padding: 0;
+margin: 0;
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.prayer-item {
+display: flex;
+gap: 12px;
+align-items: flex-start;
+}
+
+.prayer-num {
+flex-shrink: 0;
+width: 24px;
+height: 24px;
+background: var(–teal);
+color: var(–bg);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Gowun Batang’, serif;
+font-size: 12px;
+font-weight: 700;
+margin-top: 1px;
+}
+
+body.lang-th .prayer-num {
+font-family: ‘Sarabun’, sans-serif;
+}
+
+.prayer-content {
+flex: 1;
+font-size: 13px;
+line-height: 1.65;
+color: var(–ink-soft);
+}
+
+.prayer-monthly-footer {
+margin-top: 16px;
+padding-top: 14px;
+border-top: 1px dashed var(–line);
+text-align: center;
+font-size: 12px;
+color: var(–ink-mute);
+}
+
+.prayer-monthly-footer a {
+color: var(–accent-deep);
+text-decoration: none;
+font-weight: 600;
+margin-left: 4px;
 }
 
 /* ===== Offering ===== */
 .offer-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 22px 18px;
-  box-shadow: var(--shadow);
-  text-align: center;
+background: var(–white);
+border-radius: var(–radius);
+padding: 22px 18px;
+box-shadow: var(–shadow);
+text-align: center;
 }
 
 .offer-bank-label {
-  font-size: 10px;
-  color: var(--ink-mute);
-  letter-spacing: 0.15em;
-  font-weight: 600;
+font-size: 10px;
+color: var(–ink-mute);
+letter-spacing: 0.15em;
+font-weight: 600;
 }
 
 .offer-bank {
-  font-family: 'Gowun Batang', serif;
-  font-size: 14px;
-  margin: 6px 0 6px;
-  font-weight: 600;
+font-family: ‘Gowun Batang’, serif;
+font-size: 14px;
+margin: 6px 0 6px;
+font-weight: 600;
 }
 
-body.lang-th .offer-bank { font-family: 'Sarabun', sans-serif; }
+body.lang-th .offer-bank { font-family: ‘Sarabun’, sans-serif; }
 
 .offer-account {
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--accent-deep);
-  letter-spacing: 0.04em;
-  margin-bottom: 4px;
-  font-family: 'Gowun Batang', serif;
+font-size: 19px;
+font-weight: 700;
+color: var(–accent-deep);
+letter-spacing: 0.04em;
+margin-bottom: 4px;
+font-family: ‘Gowun Batang’, serif;
 }
 
 .offer-name {
-  font-size: 12px;
-  color: var(--ink-soft);
-  margin-bottom: 14px;
+font-size: 12px;
+color: var(–ink-soft);
+margin-bottom: 14px;
 }
 
 .offer-qr {
-  width: 140px;
-  height: 140px;
-  margin: 14px auto 6px;
-  display: block;
-  border-radius: 10px;
-  background: var(--white);
-  padding: 6px;
-  border: 1px solid var(--line-soft);
+width: 140px;
+height: 140px;
+margin: 14px auto 6px;
+display: block;
+border-radius: 10px;
+background: var(–white);
+padding: 6px;
+border: 1px solid var(–line-soft);
 }
 
 .offer-qr-caption {
-  font-size: 10px;
-  color: var(--ink-mute);
-  letter-spacing: 0.1em;
+font-size: 10px;
+color: var(–ink-mute);
+letter-spacing: 0.1em;
 }
 
 .copy-account {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--bg-warm);
-  border: 1px solid var(--line);
-  color: var(--ink-soft);
-  padding: 7px 14px;
-  border-radius: 16px;
-  font-size: 11px;
-  font-weight: 500;
-  cursor: pointer;
-  margin-top: 4px;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: var(–bg-warm);
+border: 1px solid var(–line);
+color: var(–ink-soft);
+padding: 7px 14px;
+border-radius: 16px;
+font-size: 11px;
+font-weight: 500;
+cursor: pointer;
+margin-top: 4px;
 }
 
 .copy-account:active {
-  background: var(--line);
+background: var(–line);
 }
 
 .offer-purpose {
-  display: inline-block;
-  background: var(--teal);
-  color: var(--bg);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 5px 14px;
-  border-radius: 14px;
-  margin-bottom: 14px;
+display: inline-block;
+background: var(–teal);
+color: var(–bg);
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 0.05em;
+padding: 5px 14px;
+border-radius: 14px;
+margin-bottom: 14px;
 }
 
 .offer-divider {
-  height: 1px;
-  background: var(--line);
-  margin: 26px -18px 22px;
-  position: relative;
+height: 1px;
+background: var(–line);
+margin: 26px -18px 22px;
+position: relative;
 }
 
 .offer-divider::before {
-  content: "✦";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--white);
-  color: var(--accent);
-  padding: 0 12px;
-  font-size: 12px;
+content: “✦”;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: var(–white);
+color: var(–accent);
+padding: 0 12px;
+font-size: 12px;
 }
 
 /* ===== Footer ===== */
 .site-footer {
-  margin-top: 28px;
-  background: var(--teal-deep);
-  color: var(--bg);
-  padding: 28px 22px 24px;
-  text-align: center;
+margin-top: 28px;
+background: var(–teal-deep);
+color: var(–bg);
+padding: 28px 22px 24px;
+text-align: center;
 }
 
 .footer-logo {
-  display: block;
-  width: 115px;
-  max-width: 40%;
-  height: auto;
-  margin: 0 auto 18px;
+display: block;
+width: 115px;
+max-width: 40%;
+height: auto;
+margin: 0 auto 18px;
 }
 
 .footer-name {
-  font-family: 'Gowun Batang', serif;
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 16px;
+font-family: ‘Gowun Batang’, serif;
+font-size: 15px;
+font-weight: 700;
+margin-bottom: 16px;
 }
 
 body.lang-th .footer-name {
-  font-family: 'Sarabun', sans-serif;
+font-family: ‘Sarabun’, sans-serif;
 }
 
 .footer-en {
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 16px;
+font-size: 10px;
+letter-spacing: 0.25em;
+color: var(–accent);
+font-weight: 600;
+margin-bottom: 16px;
 }
 
 .footer-info {
-  font-size: 12px;
-  line-height: 1.8;
-  opacity: 0.85;
-  margin-bottom: 16px;
+font-size: 12px;
+line-height: 1.8;
+opacity: 0.85;
+margin-bottom: 16px;
 }
 
 .footer-info a {
-  color: var(--bg);
-  text-decoration: none;
+color: var(–bg);
+text-decoration: none;
 }
 
 .footer-channels {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
+display: flex;
+justify-content: center;
+gap: 10px;
+margin-bottom: 16px;
+flex-wrap: wrap;
 }
 
 .channel-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(250, 246, 238, 0.1);
-  color: var(--bg);
-  border: 1px solid rgba(250, 246, 238, 0.2);
-  padding: 7px 12px;
-  border-radius: 16px;
-  font-size: 11px;
-  text-decoration: none;
-  font-weight: 500;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: rgba(250, 246, 238, 0.1);
+color: var(–bg);
+border: 1px solid rgba(250, 246, 238, 0.2);
+padding: 7px 12px;
+border-radius: 16px;
+font-size: 11px;
+text-decoration: none;
+font-weight: 500;
 }
 
 .channel-btn:active {
-  background: rgba(250, 246, 238, 0.2);
+background: rgba(250, 246, 238, 0.2);
 }
 
 .channel-icon {
-  font-size: 12px;
-  font-weight: 700;
+font-size: 12px;
+font-weight: 700;
 }
 
 .footer-est {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  opacity: 0.5;
-  margin-top: 8px;
-  font-family: 'Gowun Batang', serif;
+font-size: 10px;
+letter-spacing: 0.2em;
+opacity: 0.5;
+margin-top: 8px;
+font-family: ‘Gowun Batang’, serif;
 }
 
 body.lang-th .footer-est {
-  font-family: 'Sarabun', sans-serif;
+font-family: ‘Sarabun’, sans-serif;
 }
 
 /* ===== Bottom nav ===== */
 .bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
-  background: var(--white);
-  border-top: 1px solid var(--line-soft);
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  padding: 8px 0 10px;
-  z-index: 50;
-  box-shadow: 0 -2px 12px rgba(74, 63, 51, 0.06);
+position: fixed;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 100%;
+max-width: 480px;
+background: var(–white);
+border-top: 1px solid var(–line-soft);
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+padding: 8px 0 10px;
+z-index: 50;
+box-shadow: 0 -2px 12px rgba(74, 63, 51, 0.06);
 }
 
 .nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  color: var(--ink-soft);
-  text-decoration: none;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 3px;
+background: none;
+border: none;
+cursor: pointer;
+padding: 4px;
+color: var(–ink-soft);
+text-decoration: none;
 }
 
-.nav-item.active { color: var(--accent-deep); }
+.nav-item.active { color: var(–accent-deep); }
 .nav-item.active .nav-icon { transform: scale(1.1); }
 
 .nav-icon { font-size: 19px; transition: transform 0.2s; }
@@ -949,8 +1046,8 @@ body.lang-th .th-text { display: inline; }
 
 /* ===== Animations ===== */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+from { opacity: 0; transform: translateY(12px); }
+to { opacity: 1; transform: translateY(0); }
 }
 
 section { animation: fadeUp 0.5s ease backwards; }
@@ -961,24 +1058,25 @@ section:nth-child(6) { animation-delay: 0.2s; }
 
 /* ===== Toast ===== */
 .toast {
-  position: fixed;
-  bottom: 90px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: var(--ink);
-  color: var(--bg);
-  padding: 10px 18px;
-  border-radius: 20px;
-  font-size: 12px;
-  z-index: 200;
-  transition: transform 0.3s;
-  box-shadow: var(--shadow-lg);
-  white-space: nowrap;
-  max-width: 90%;
+position: fixed;
+bottom: 90px;
+left: 50%;
+transform: translateX(-50%) translateY(100px);
+background: var(–ink);
+color: var(–bg);
+padding: 10px 18px;
+border-radius: 20px;
+font-size: 12px;
+z-index: 200;
+transition: transform 0.3s;
+box-shadow: var(–shadow-lg);
+white-space: nowrap;
+max-width: 90%;
 }
 
 .toast.show { transform: translateX(-50%) translateY(0); }
 </style>
+
 </head>
 <body>
 
@@ -990,6 +1088,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
      ========================================= -->
 
 <!-- Top bar with logo + lang toggle -->
+
 <div class="topbar">
   <a class="brand" href="#top">
     <img class="brand-logo" src="images/logo.png" alt="Thai Ruamjai Church Logo">
@@ -1007,6 +1106,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </div>
 
 <!-- Hero with photo background -->
+
 <header class="hero" id="top">
   <img class="hero-img" src="images/hero-courtyard.jpg" alt="한마음태국인교회 마당의 교제 풍경">
   <div class="hero-overlay"></div>
@@ -1024,6 +1124,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </header>
 
 <!-- Welcome message + verse -->
+
 <div class="welcome">
   <p class="welcome-text">
     <span class="ko-text">고된 타국 생활 속에서 쉼이 필요할 때, 언제든 찾아오세요. 하나님의 사랑 안에서 태국인과 라오스인 모두가 한 가족이 되어 따스한 위로를 나누는 안식처입니다.</span>
@@ -1037,11 +1138,12 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </div>
 
 <!-- Quick menu (8 items) -->
+
 <section>
   <div class="quick-grid">
     <a class="quick-item" href="#sermons">
       <span class="quick-icon">📖</span>
-      <div class="quick-label"><span class="ko-text">설교</span><span class="th-text">คำเทศนา</span></div>
+      <div class="quick-label"><span class="ko-text">말씀과 묵상</span><span class="th-text">พระวจนะและการใคร่ครวญ</span></div>
     </a>
     <a class="quick-item" href="#board">
       <span class="quick-icon">📷</span>
@@ -1063,9 +1165,9 @@ section:nth-child(6) { animation-delay: 0.2s; }
       <span class="quick-icon">✋</span>
       <div class="quick-label"><span class="ko-text">새가족</span><span class="th-text">สมาชิกใหม่</span></div>
     </a>
-    <a class="quick-item" href="#words">
-      <span class="quick-icon">🇰🇷🇹🇭</span>
-      <div class="quick-label"><span class="ko-text">한태단어</span><span class="th-text">คำศัพท์</span></div>
+    <a class="quick-item" href="#monthly-prayer">
+      <span class="quick-icon">🕊️</span>
+      <div class="quick-label"><span class="ko-text">이달의 기도</span><span class="th-text">คำอธิษฐานประจำเดือน</span></div>
     </a>
     <a class="quick-item" href="#offering">
       <span class="quick-icon">💝</span>
@@ -1075,6 +1177,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </section>
 
 <!-- Worship times (정확한 정보 반영) -->
+
 <section id="worship">
   <div class="section-head">
     <h2 class="section-title">
@@ -1099,16 +1202,20 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </section>
 
 <!-- Sermons -->
+
 <section id="sermons">
   <div class="section-head">
     <h2 class="section-title">
-      <span class="ko-text">주일 설교</span>
-      <span class="th-text">คำเทศนาวันอาทิตย์</span>
+      <span class="ko-text">말씀과 묵상</span>
+      <span class="th-text">พระวจนะและการใคร่ครวญ</span>
     </h2>
     <a href="#" class="section-more"><span class="ko-text">전체</span><span class="th-text">ดูทั้งหมด</span></a>
   </div>
   <div class="sermon-list">
     <article class="sermon-item">
+      <span class="sermon-tag">
+        <span class="ko-text">설교</span><span class="th-text">คำเทศนา</span>
+      </span>
       <div class="sermon-thumb">✦</div>
       <div class="sermon-info">
         <div class="sermon-date">2026.05.03 · SUNDAY</div>
@@ -1117,6 +1224,31 @@ section:nth-child(6) { animation-delay: 0.2s; }
       </div>
     </article>
     <article class="sermon-item">
+      <span class="sermon-tag tag-thought">
+        <span class="ko-text">단상</span><span class="th-text">บันทึก</span>
+      </span>
+      <div class="sermon-thumb thumb-thought">✎</div>
+      <div class="sermon-info">
+        <div class="sermon-date">2026.04.28 · MON</div>
+        <h3 class="sermon-title"><span class="ko-text">한 형제의 식탁에서 만난 은혜</span><span class="th-text">พระคุณที่พบบนโต๊ะอาหารของพี่น้องคนหนึ่ง</span></h3>
+        <div class="sermon-passage"><span class="ko-text">목회 단상</span><span class="th-text">บันทึกการเลี้ยงดู</span></div>
+      </div>
+    </article>
+    <article class="sermon-item">
+      <span class="sermon-tag tag-bible">
+        <span class="ko-text">성경</span><span class="th-text">พระคัมภีร์</span>
+      </span>
+      <div class="sermon-thumb thumb-bible">✚</div>
+      <div class="sermon-info">
+        <div class="sermon-date">2026.04.20 · SAT</div>
+        <h3 class="sermon-title"><span class="ko-text">구약의 '나그네 사랑' 율법</span><span class="th-text">บัญญัติ 'รักคนต่างถิ่น' ในพันธสัญญาเดิม</span></h3>
+        <div class="sermon-passage">Leviticus 19:33-34 · เลวีนิติ</div>
+      </div>
+    </article>
+    <article class="sermon-item">
+      <span class="sermon-tag">
+        <span class="ko-text">설교</span><span class="th-text">คำเทศนา</span>
+      </span>
       <div class="sermon-thumb">✦</div>
       <div class="sermon-info">
         <div class="sermon-date">2026.04.26 · SUNDAY</div>
@@ -1128,6 +1260,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </section>
 
 <!-- Board / posts (사진 적용) -->
+
 <section id="board">
   <div class="section-head">
     <h2 class="section-title">
@@ -1201,6 +1334,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </section>
 
 <!-- Calendar -->
+
 <section id="calendar">
   <div class="section-head">
     <h2 class="section-title">
@@ -1243,6 +1377,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </section>
 
 <!-- Prayer -->
+
 <section id="prayer">
   <div class="section-head">
     <h2 class="section-title">
@@ -1263,35 +1398,67 @@ section:nth-child(6) { animation-delay: 0.2s; }
   </div>
 </section>
 
-<!-- Korean-Thai words -->
-<section id="words">
+<!-- Monthly Prayer Topics -->
+
+<section id="monthly-prayer">
   <div class="section-head">
     <h2 class="section-title">
-      <span class="ko-text">오늘의 한·태 단어</span>
-      <span class="th-text">คำศัพท์ไทย-เกาหลีวันนี้</span>
+      <span class="ko-text">이달의 기도제목</span>
+      <span class="th-text">คำอธิษฐานประจำเดือน</span>
     </h2>
+    <span class="section-more" style="cursor: default;">2026.05</span>
   </div>
-  <div class="word-card">
-    <div class="word-pair">
-      <span class="word-ko">은혜</span>
-      <span class="word-th">พระคุณ (프라쿤)</span>
+  <div class="prayer-monthly-card">
+    <div class="prayer-monthly-header">
+      <span class="prayer-monthly-icon">🕊️</span>
+      <div class="prayer-monthly-title">
+        <span class="ko-text">함께 기도해주세요</span>
+        <span class="th-text">โปรดอธิษฐานร่วมกัน</span>
+      </div>
     </div>
-    <div class="word-pair">
-      <span class="word-ko">감사합니다</span>
-      <span class="word-th">ขอบคุณค่ะ/ครับ</span>
-    </div>
-    <div class="word-pair">
-      <span class="word-ko">사랑</span>
-      <span class="word-th">ความรัก (콰암락)</span>
-    </div>
-    <div class="word-pair">
-      <span class="word-ko">평안하세요</span>
-      <span class="word-th">สันติสุข (싼띠쑥)</span>
+    <ol class="prayer-list">
+      <li class="prayer-item">
+        <span class="prayer-num">1</span>
+        <div class="prayer-content">
+          <span class="ko-text">성도들이 서로 사랑하며 하나 되는 공동체로 세워지도록</span>
+          <span class="th-text">เพื่อพี่น้องคริสตจักรจะรักซึ่งกันและกัน และถูกสร้างให้เป็นชุมชนที่เป็นน้ำหนึ่งใจเดียวกัน</span>
+        </div>
+      </li>
+      <li class="prayer-item">
+        <span class="prayer-num">2</span>
+        <div class="prayer-content">
+          <span class="ko-text">일대일 제자훈련이 풍성한 열매를 맺도록</span>
+          <span class="th-text">เพื่อการสร้างสาวกแบบตัวต่อตัวจะเกิดผลอันอุดมสมบูรณ์</span>
+        </div>
+      </li>
+      <li class="prayer-item">
+        <span class="prayer-num">3</span>
+        <div class="prayer-content">
+          <span class="ko-text">BBS 신학생들이 말씀 위에 든든히 세워지도록</span>
+          <span class="th-text">เพื่อนักศึกษา BBS จะถูกสร้างให้ตั้งมั่นคงอยู่บนพระวจนะของพระเจ้า</span>
+        </div>
+      </li>
+      <li class="prayer-item">
+        <span class="prayer-num">4</span>
+        <div class="prayer-content">
+          <span class="ko-text">선교사 가정 위에 건강과 은혜가 넘치도록</span>
+          <span class="th-text">เพื่อสุขภาพและพระคุณจะเปี่ยมล้นเหนือครอบครัวมิชชันนารี</span>
+        </div>
+      </li>
+    </ol>
+    <div class="prayer-monthly-footer">
+      <span class="ko-text">개인 기도제목은</span>
+      <span class="th-text">สำหรับคำอธิษฐานส่วนตัว</span>
+      <a href="#prayer">
+        <span class="ko-text">여기서 신청하세요 →</span>
+        <span class="th-text">ส่งคำขอที่นี่ →</span>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- Offering -->
+
 <section id="offering">
   <div class="section-head">
     <h2 class="section-title">
@@ -1317,27 +1484,31 @@ section:nth-child(6) { animation-delay: 0.2s; }
     <img class="offer-qr" src="images/offering-qr.png" alt="NH농협은행 헌금 계좌 QR 코드">
     <div class="offer-qr-caption">SCAN QR · สแกน QR</div>
 
-    <!-- 구분선 -->
-    <div class="offer-divider"></div>
+```
+<!-- 구분선 -->
+<div class="offer-divider"></div>
 
-    <!-- 계좌 2: 하나은행 - GMP 선교헌금 -->
-    <div class="offer-purpose">
-      <span class="ko-text">선교 후원 (GMP)</span>
-      <span class="th-text">สนับสนุนพันธกิจมิชชัน (GMP)</span>
-    </div>
-    <div class="offer-bank-label">BANK · ธนาคาร</div>
-    <div class="offer-bank"><span class="ko-text">하나은행</span><span class="th-text">ธนาคาร HANA (하나은행)</span></div>
-    <div class="offer-account">303-040000-526-2</div>
-    <div class="offer-name"><span class="ko-text">예금주: GMP 김봉운</span><span class="th-text">ชื่อบัญชี: GMP 김봉운</span></div>
-    <button class="copy-account" onclick="copyAccount('3030400005262')">
-      <span>⧉</span>
-      <span class="ko-text">계좌번호 복사</span>
-      <span class="th-text">คัดลอกเลขบัญชี</span>
-    </button>
+<!-- 계좌 2: 하나은행 - GMP 선교헌금 -->
+<div class="offer-purpose">
+  <span class="ko-text">선교 후원 (GMP)</span>
+  <span class="th-text">สนับสนุนพันธกิจมิชชัน (GMP)</span>
+</div>
+<div class="offer-bank-label">BANK · ธนาคาร</div>
+<div class="offer-bank"><span class="ko-text">하나은행</span><span class="th-text">ธนาคาร HANA (하나은행)</span></div>
+<div class="offer-account">303-040000-526-2</div>
+<div class="offer-name"><span class="ko-text">예금주: GMP 김봉운</span><span class="th-text">ชื่อบัญชี: GMP 김봉운</span></div>
+<button class="copy-account" onclick="copyAccount('3030400005262')">
+  <span>⧉</span>
+  <span class="ko-text">계좌번호 복사</span>
+  <span class="th-text">คัดลอกเลขบัญชี</span>
+</button>
+```
+
   </div>
 </section>
 
 <!-- New family -->
+
 <section id="newcomer">
   <div class="section-head">
     <h2 class="section-title">
@@ -1359,6 +1530,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </section>
 
 <!-- Footer -->
+
 <footer class="site-footer">
   <img class="footer-logo" src="images/logo-white.png" alt="Thai Ruamjai Church">
   <div class="footer-name">
@@ -1389,6 +1561,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
 </footer>
 
 <!-- Bottom nav -->
+
 <nav class="bottom-nav">
   <a class="nav-item active" href="#top">
     <span class="nav-icon">🏠</span>
@@ -1396,7 +1569,7 @@ section:nth-child(6) { animation-delay: 0.2s; }
   </a>
   <a class="nav-item" href="#sermons">
     <span class="nav-icon">📖</span>
-    <span class="nav-label"><span class="ko-text">설교</span><span class="th-text">คำเทศนา</span></span>
+    <span class="nav-label"><span class="ko-text">묵상</span><span class="th-text">พระวจนะ</span></span>
   </a>
   <a class="nav-item" href="#board">
     <span class="nav-icon">📷</span>
