@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E5F5B">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="태국어 학습">
+<title>오륜교회 미션트립 태국어</title>
+<style>
+:root{
+  --teal:#0E5F5B; --teal-deep:#0A4744; --teal-soft:#E3F0EE;
+  --gold:#D9A441; --gold-deep:#B8862C; --gold-soft:#FBF2DF;
+  --bg:#F8F4EC; --card:#FFFFFF; --ink:#25333A; --sub:#6B7B80;
+  --line:#E7E0D2; --ok:#2E8B57; --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.55;
+  padding-bottom:calc(72px + env(safe-area-inset-bottom));
+}
+header.app{
+  background:var(--teal); color:#fff; padding:16px 20px 14px;
+  border-bottom:4px solid var(--gold);
+}
+header.app .toprow{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+header.app .eyebrow{font-size:12px; letter-spacing:.12em; color:#CFE5E2; font-weight:600}
+header.app h1{font-size:20px; font-weight:800; margin-top:2px}
+header.app .sub{font-size:12px; color:#BFDAD7; margin-top:2px}
+.gender{
+  display:flex; background:rgba(255,255,255,.12); border-radius:12px; padding:3px; flex:none; margin-top:4px;
+}
+.gender button{
+  font:inherit; font-size:12.5px; font-weight:800; border:none; background:none; color:#CFE5E2;
+  padding:6px 11px; border-radius:9px; cursor:pointer;
+}
+.gender button.on{background:var(--gold); color:#4A3608}
+.wrap{max-width:560px; margin:0 auto; padding:16px}
+
+nav.tabs{
+  position:fixed; bottom:0; left:0; right:0; z-index:50;
+  display:flex; background:#fff; border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+nav.tabs button{
+  flex:1; padding:10px 0 8px; background:none; border:none;
+  font:inherit; font-size:12px; font-weight:700; color:var(--sub); cursor:pointer;
+}
+nav.tabs button .ic{display:block; font-size:20px; margin-bottom:2px}
+nav.tabs button.on{color:var(--teal)}
+.page{display:none}
+.page.on{display:block}
+
+.notice{
+  background:#FFF6E5; border:1px solid #EED9AC; color:#7A5A17; font-size:12.5px;
+  border-radius:12px; padding:10px 14px; margin-bottom:12px; display:none;
+}
+
+.hero{
+  background:var(--teal); color:#fff; border-radius:var(--radius);
+  padding:18px 18px 14px; margin-bottom:14px; position:relative; overflow:hidden;
+}
+.hero h2{font-size:15px; color:var(--gold); font-weight:800; margin-bottom:8px}
+.hero .t5{display:flex; flex-direction:column; gap:8px}
+.hero .t5 .row{background:rgba(255,255,255,.08); border-radius:10px; padding:8px 12px; font-size:14px; display:flex; align-items:center; gap:8px}
+.hero .t5 .tx{flex:1}
+.hero .t5 b{color:#FFE2A8}
+.spk{
+  flex:none; font-size:16px; background:rgba(255,255,255,.15); border:none; border-radius:50%;
+  width:34px; height:34px; cursor:pointer; color:#fff;
+}
+.spk.dark{background:var(--teal-soft); color:var(--teal)}
+
+.rulebox{background:var(--gold-soft); border:1px solid #EED9AC; border-radius:var(--radius); padding:14px 16px; margin-bottom:14px}
+.rulebox h2{font-size:14px; color:var(--gold-deep); margin-bottom:8px}
+.rulebox p{font-size:13.5px; margin-bottom:6px}
+.rulebox p:last-child{margin-bottom:0}
+
+details.part{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); margin-bottom:10px; overflow:hidden}
+details.part summary{
+  list-style:none; cursor:pointer; padding:14px 16px; display:flex; align-items:center; gap:10px;
+  font-weight:800; font-size:15px;
+}
+details.part summary::-webkit-details-marker{display:none}
+details.part summary .no{
+  background:var(--teal-soft); color:var(--teal); font-size:12px; font-weight:800;
+  border-radius:8px; padding:2px 8px; flex:none;
+}
+details.part summary .cnt{margin-left:auto; font-size:12px; color:var(--sub); font-weight:600}
+details.part[open] summary{border-bottom:1px solid var(--line)}
+.plist{padding:6px 16px 12px}
+.pitem{display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line)}
+.pitem:last-child{border-bottom:none}
+.pitem .txt{flex:1; display:flex; flex-direction:column}
+.pitem .ko{font-size:13.5px; color:var(--sub)}
+.pitem .th{font-size:16px; font-weight:800; color:var(--teal-deep); margin-top:1px}
+.pitem .tt{font-size:14px; color:var(--gold-deep); margin-top:1px}
+.pitem .ex{font-size:12.5px; color:var(--sub); margin-top:2px}
+.tipline{font-size:12.5px; color:var(--sub); padding:8px 2px 2px}
+
+.selrow{display:flex; gap:8px; margin-bottom:12px}
+.selrow select{
+  flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--ink);
+  padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:#fff;
+}
+.selrow button{
+  font:inherit; font-size:14px; font-weight:700; padding:10px 14px; border-radius:12px;
+  border:1px solid var(--line); background:#fff; color:var(--teal); cursor:pointer;
+}
+.fcard{perspective:1000px; height:310px; margin-bottom:12px; cursor:pointer}
+.fcard .inner{position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .45s}
+.fcard.flip .inner{transform:rotateY(180deg)}
+.face{
+  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:24px;
+}
+.face.front{background:var(--card); border:1px solid var(--line)}
+.face.front .lbl{font-size:12px; letter-spacing:.1em; color:var(--sub); font-weight:700; margin-bottom:10px}
+.face.front .big{font-size:24px; font-weight:800}
+.face.front .hint{position:absolute; bottom:16px; font-size:12px; color:var(--sub)}
+.face.back{background:var(--teal); color:#fff; transform:rotateY(180deg); border-bottom:5px solid var(--gold)}
+.face.back .lbl{font-size:12px; letter-spacing:.1em; color:#BFDAD7; font-weight:700; margin-bottom:8px}
+.face.back .big{font-size:26px; font-weight:800; color:#FFE2A8}
+.face.back .tt{margin-top:6px; font-size:17px; color:#EAF4F3}
+.face.back .ex{margin-top:8px; font-size:13px; color:#BFDAD7}
+.face.back .spkbig{
+  margin-top:14px; font:inherit; font-size:15px; font-weight:800; color:var(--teal-deep);
+  background:var(--gold); border:none; border-radius:24px; padding:9px 22px; cursor:pointer;
+}
+.fnav{display:flex; gap:8px}
+.fnav button{flex:1; font:inherit; font-size:15px; font-weight:800; padding:13px 0; border-radius:14px; border:none; cursor:pointer}
+.fnav .ghost{background:#fff; border:1px solid var(--line); color:var(--ink)}
+.fnav .learn{background:var(--gold); color:#4A3608}
+.fnav .learn.done{background:var(--ok); color:#fff}
+.fmeta{display:flex; justify-content:space-between; align-items:center; margin-top:10px; font-size:13px; color:var(--sub); font-weight:600}
+.fmeta .prog{color:var(--teal); font-weight:800}
+.chip{font-size:12px; background:var(--teal-soft); color:var(--teal); border-radius:20px; padding:3px 10px; font-weight:700}
+
+.qcard{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:20px; margin-bottom:12px}
+.qcard .qno{font-size:12px; font-weight:800; color:var(--gold-deep); letter-spacing:.08em; margin-bottom:6px}
+.qcard .q{font-size:19px; font-weight:800; margin-bottom:16px}
+.opt{
+  display:block; width:100%; text-align:left; font:inherit; font-size:15px; font-weight:700;
+  background:var(--bg); border:2px solid var(--line); border-radius:12px;
+  padding:12px 14px; margin-bottom:8px; cursor:pointer; color:var(--ink);
+}
+.opt.correct{background:#E6F4EA; border-color:var(--ok); color:var(--ok)}
+.opt.wrong{background:#FBEAEA; border-color:#C0564F; color:#A33830}
+.qfoot{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--sub); font-weight:600}
+.qlisten{
+  display:none; width:100%; font:inherit; font-size:14px; font-weight:800; color:var(--teal);
+  background:var(--teal-soft); border:none; border-radius:12px; padding:11px 0; cursor:pointer; margin-top:4px;
+}
+.btn-primary{
+  display:block; width:100%; font:inherit; font-size:16px; font-weight:800; color:#fff;
+  background:var(--teal); border:none; border-radius:14px; padding:14px 0; cursor:pointer; margin-top:8px;
+}
+.result{background:var(--teal); color:#fff; border-radius:var(--radius); padding:28px 20px; text-align:center; border-bottom:5px solid var(--gold)}
+.result .score{font-size:44px; font-weight:800; color:#FFE2A8; margin:6px 0}
+.result p{font-size:14px; color:#D9EAE8}
+.footer-note{margin-top:18px; text-align:center; font-size:12px; color:var(--sub)}
+</style>
+</head>
+<body>
+
+<header class="app">
+  <div class="toprow">
+    <div>
+      <div class="eyebrow">오륜교회 미션트립</div>
+      <h1>태국어 기초 학습</h1>
+      <div class="sub">싸왓디 캅/카 · 미소와 함께, 진심을 담아 🙏</div>
+    </div>
+    <div class="gender" title="발음 듣기: 남자는 캅(ครับ), 여자는 카(ค่ะ)">
+      <button id="gM" class="on">👨 캅</button>
+      <button id="gF">👩 카</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="notice" id="voiceNotice">
+    🔈 이 휴대폰에 <b>태국어 음성</b>이 아직 설치되어 있지 않은 것 같아요.<br>
+    · <b>아이폰</b>: 설정 → 손쉬운 사용 → 콘텐츠 말하기 → 음성 → 태국어 추가<br>
+    · <b>안드로이드</b>: 설정 → Google TTS(텍스트 음성 변환) → 태국어 음성 데이터 설치<br>
+    설치 후 앱을 다시 열면 발음을 들을 수 있어요.
+  </div>
+
+  <!-- ═══ 학습 ═══ -->
+  <div class="page on" id="page-study">
+    <div class="hero">
+      <h2>🙏 함께 외우는 핵심 5문장</h2>
+      <div class="t5" id="top5"></div>
+    </div>
+
+    <div class="rulebox">
+      <h2>💡 꼭 알아야 할 핵심 규칙 3가지</h2>
+      <p><b>① 문장 끝의 "캅/카"</b> — 남자는 <b>"캅"</b>, 여자는 <b>"카"</b>를 붙이면 공손한 말이 돼요. (위의 👨/👩 버튼으로 듣는 발음도 바뀌어요!)</p>
+      <p><b>② "나"는 성별에 따라 달라요</b> — 남자는 <b>"폼"</b>, 여자는 <b>"디찬"</b> 또는 <b>"찬"</b>.</p>
+      <p><b>③ 태국어는 성조 언어예요</b> — 높낮이에 따라 뜻이 달라지지만, 부담 갖지 말고 부드럽고 자연스럽게!</p>
+    </div>
+
+    <div id="parts"></div>
+
+    <div class="rulebox" style="margin-top:14px">
+      <h2>💡 발음 연습 꿀팁</h2>
+      <p>태국어는 <b>성조 언어</b>라서 같은 글자도 음 높낮이에 따라 뜻이 달라져요. 🔊 버튼으로 원어민 발음을 듣고 따라 하되, 너무 정확하게 하려고 부담 갖지 말고 <b>밝고 환한 미소</b>와 함께 말하면 마음이 통해요!</p>
+    </div>
+    <div class="footer-note">한마음태국인교회 · 오륜교회 태국 미션트립 자료</div>
+  </div>
+
+  <!-- ═══ 암기카드 ═══ -->
+  <div class="page" id="page-cards">
+    <div class="selrow">
+      <select id="cardScope"></select>
+      <button id="btnShuffle">🔀 섞기</button>
+    </div>
+    <div class="fcard" id="fcard">
+      <div class="inner">
+        <div class="face front">
+          <div class="lbl">한국어</div>
+          <div class="big" id="cardKo"></div>
+          <div class="hint">카드를 누르면 태국어가 보여요</div>
+        </div>
+        <div class="face back">
+          <div class="lbl" id="cardPart"></div>
+          <div class="big" id="cardTh"></div>
+          <div class="tt" id="cardTt"></div>
+          <div class="ex" id="cardEx"></div>
+          <button class="spkbig" id="cardSpeak">🔊 발음 듣기</button>
+        </div>
+      </div>
+    </div>
+    <div class="fnav">
+      <button class="ghost" id="btnPrev">◀ 이전</button>
+      <button class="learn" id="btnLearn">⭐ 외웠어요</button>
+      <button class="ghost" id="btnNext">다음 ▶</button>
+    </div>
+    <div class="fmeta">
+      <span class="prog" id="cardPos"></span>
+      <span class="chip" id="learnCount"></span>
+    </div>
+  </div>
+
+  <!-- ═══ 퀴즈 ═══ -->
+  <div class="page" id="page-quiz">
+    <div id="quizSetup">
+      <div class="qcard">
+        <div class="q" style="font-size:17px">🎯 태국어 퀴즈</div>
+        <p style="font-size:14px;color:var(--sub);margin-bottom:14px">한국어를 보고 알맞은 태국어를 고르세요. 문제 10개가 무작위로 나와요.</p>
+        <div class="selrow" style="margin-bottom:0"><select id="quizScope"></select></div>
+        <button class="btn-primary" id="btnStartQuiz" style="margin-top:14px">퀴즈 시작하기</button>
+      </div>
+    </div>
+    <div id="quizPlay" style="display:none">
+      <div class="qcard">
+        <div class="qno" id="qNo"></div>
+        <div class="q" id="qText"></div>
+        <div id="qOpts"></div>
+        <button class="qlisten" id="qListen">🔊 정답 발음 듣기</button>
+        <div class="qfoot">
+          <span id="qScore"></span>
+          <span id="qHint" style="color:var(--gold-deep)"></span>
+        </div>
+      </div>
+      <button class="btn-primary" id="btnNextQ" style="display:none">다음 문제 ▶</button>
+    </div>
+    <div id="quizDone" style="display:none">
+      <div class="result">
+        <p>퀴즈 완료! 🎉</p>
+        <div class="score" id="finalScore"></div>
+        <p id="finalMsg"></p>
+      </div>
+      <button class="btn-primary" id="btnRetry">다시 도전하기</button>
+    </div>
+  </div>
+</div>
+
+<nav class="tabs">
+  <button class="on" data-page="study"><span class="ic">📖</span>학습</button>
+  <button data-page="cards"><span class="ic">🃏</span>암기카드</button>
+  <button data-page="quiz"><span class="ic">🎯</span>퀴즈</button>
+</nav>
+
+<script>
+/* ── 데이터 (t: 태국어 원문 — 발음 듣기용, tts: 별도 낭독문) ── */
+const PARTS = [
+{ id:"p1", icon:"👋", title:"PART 1. 인사말", note:"미션트립 첫날 꼭 필요해요!", items:[
+  {ko:"안녕하세요 / 안녕!", th:"싸왓디 캅/카", t:"สวัสดีครับ/ค่ะ"},
+  {ko:"안녕히 가세요 / 안녕히 계세요", th:"싸왓디 캅/카", t:"สวัสดีครับ/ค่ะ", ex:"※ 만날 때와 헤어질 때 똑같이 써요!"},
+  {ko:"감사합니다", th:"컵쿤 캅/카", t:"ขอบคุณครับ/ค่ะ"},
+  {ko:"정말 감사합니다", th:"컵쿤 막막 캅/카", t:"ขอบคุณมากๆ ครับ/ค่ะ"},
+  {ko:"죄송합니다 / 실례합니다", th:"커톳 캅/카", t:"ขอโทษครับ/ค่ะ"},
+  {ko:"괜찮아요 / 천만에요", th:"마이 뺀 라이 캅/카", t:"ไม่เป็นไรครับ/ค่ะ"},
+  {ko:"네 / 응", th:"차이 캅/카", t:"ใช่ครับ/ค่ะ"},
+  {ko:"아니요", th:"마이 차이 캅/카", t:"ไม่ใช่ครับ/ค่ะ"},
+  {ko:"잘 부탁드려요 (만나서 반가워요)", th:"인디 티 다이 루짝 캅/카", t:"ยินดีที่ได้รู้จักครับ/ค่ะ"},
+  {ko:"또 만나요!", th:"쩌깐 마이 나 캅/카", t:"เจอกันใหม่นะครับ/นะคะ"},
+]},
+{ id:"p2", icon:"🙋", title:"PART 2. 자기 소개", items:[
+  {ko:"제 이름은 ○○이에요", th:"폼/디찬 츠 ○○ 캅/카", t:"ผม/ดิฉันชื่อ ○○ ครับ/ค่ะ", tts:"ผม/ดิฉันชื่อ, ครับ/ค่ะ"},
+  {ko:"저는 한국 사람이에요", th:"폼/디찬 뻰 콘 까올리 캅/카", t:"ผม/ดิฉันเป็นคนเกาหลีครับ/ค่ะ"},
+  {ko:"저는 ○○살이에요", th:"폼/디찬 아유 ○○ 삐 캅/카", t:"ผม/ดิฉันอายุ ○○ ปีครับ/ค่ะ", tts:"ผม/ดิฉันอายุ, ปีครับ/ค่ะ"},
+  {ko:"저는 학생이에요", th:"폼/디찬 뻰 낙리안 캅/카", t:"ผม/ดิฉันเป็นนักเรียนครับ/ค่ะ"},
+  {ko:"만나서 반가워요", th:"인디 티 다이 루짝 캅/카", t:"ยินดีที่ได้รู้จักครับ/ค่ะ"},
+  {ko:"당신의 이름은 무엇인가요?", th:"쿤 츠 아라이 캅/카?", t:"คุณชื่ออะไรครับ/คะ"},
+  {ko:"몇 살이에요?", th:"쿤 아유 타올라이 캅/카?", t:"คุณอายุเท่าไหร่ครับ/คะ"},
+  {ko:"저는 태국을 좋아해요", th:"폼/디찬 첩 므앙타이 캅/카", t:"ผม/ดิฉันชอบเมืองไทยครับ/ค่ะ"},
+  {ko:"저는 한국에서 왔어요", th:"폼/디찬 마짝 까올리 캅/카", t:"ผม/ดิฉันมาจากเกาหลีครับ/ค่ะ"},
+]},
+{ id:"p3", icon:"📚", title:"PART 3. 명사 어휘", note:"사람 · 가족 · 일상", items:[
+  {ko:"나 (남자)", th:"폼", t:"ผม"},
+  {ko:"나 (여자)", th:"디찬 / 찬", t:"ดิฉัน", tts:"ดิฉัน, ฉัน"},
+  {ko:"너, 당신", th:"쿤", t:"คุณ"},
+  {ko:"친구", th:"프안", t:"เพื่อน"},
+  {ko:"아버지", th:"퍼", t:"พ่อ"},
+  {ko:"어머니", th:"매", t:"แม่"},
+  {ko:"형 / 오빠 / 누나 / 언니", th:"피", t:"พี่"},
+  {ko:"동생", th:"넝", t:"น้อง"},
+  {ko:"선생님", th:"아짠 / 크루", t:"อาจารย์ / ครู", tts:"อาจารย์, ครู"},
+  {ko:"어린이", th:"덱", t:"เด็ก"},
+  {ko:"목사님", th:"아짠", t:"อาจารย์"},
+  {ko:"집", th:"반", t:"บ้าน"},
+  {ko:"학교", th:"롱리안", t:"โรงเรียน"},
+  {ko:"교회", th:"크리스짝", t:"คริสตจักร"},
+  {ko:"사원", th:"왓", t:"วัด"},
+  {ko:"화장실", th:"헝남", t:"ห้องน้ำ"},
+  {ko:"물", th:"남", t:"น้ำ"},
+  {ko:"밥", th:"카오", t:"ข้าว"},
+  {ko:"음식", th:"아한", t:"อาหาร"},
+  {ko:"책", th:"낭쓰", t:"หนังสือ"},
+  {ko:"성경", th:"프라캄피", t:"พระคัมภีร์"},
+  {ko:"오늘", th:"완니", t:"วันนี้"},
+  {ko:"내일", th:"프룽니", t:"พรุ่งนี้"},
+  {ko:"어제", th:"므아완", t:"เมื่อวาน"},
+  {ko:"아침", th:"떤차오", t:"ตอนเช้า"},
+  {ko:"저녁", th:"떤옌", t:"ตอนเย็น"},
+  {ko:"태양", th:"프라아팃", t:"พระอาทิตย์"},
+  {ko:"비", th:"폰", t:"ฝน"},
+  {ko:"하늘", th:"파", t:"ฟ้า"},
+]},
+{ id:"p4", icon:"🏃", title:"PART 4. 동사 어휘", items:[
+  {ko:"가다", th:"빠이", t:"ไป", ex:"예) 빠이 롱리안 (학교에 가요)", tts:"ไป. ไปโรงเรียน"},
+  {ko:"오다", th:"마", t:"มา", ex:"예) 마 반 (집에 와요)", tts:"มา. มาบ้าน"},
+  {ko:"먹다", th:"낀", t:"กิน", ex:"예) 낀 카오 (밥을 먹어요)", tts:"กิน. กินข้าว"},
+  {ko:"마시다", th:"드음", t:"ดื่ม", ex:"예) 드음 남 (물을 마셔요)", tts:"ดื่ม. ดื่มน้ำ"},
+  {ko:"보다", th:"두", t:"ดู", ex:"예) 두 낭 (영화를 봐요)", tts:"ดู. ดูหนัง"},
+  {ko:"듣다", th:"퐝", t:"ฟัง", ex:"예) 퐝 플렝 (노래를 들어요)", tts:"ฟัง. ฟังเพลง"},
+  {ko:"말하다", th:"풋", t:"พูด", ex:"예) 풋 타이 (태국어를 해요)", tts:"พูด. พูดไทย"},
+  {ko:"사랑하다", th:"락", t:"รัก", ex:"예) 폼 락 쿤 (나는 너를 사랑해)", tts:"รัก. ผมรักคุณ"},
+  {ko:"좋아하다", th:"첩", t:"ชอบ", ex:"예) 디찬 첩 아한 타이 (나는 태국 음식을 좋아해)", tts:"ชอบ. ดิฉันชอบอาหารไทย"},
+  {ko:"알다", th:"루", t:"รู้", ex:"예) 폼 루 (알아요)", tts:"รู้. ผมรู้"},
+  {ko:"모르다", th:"마이 루", t:"ไม่รู้", ex:"예) 디찬 마이 루 (몰라요)", tts:"ไม่รู้. ดิฉันไม่รู้"},
+  {ko:"기도하다", th:"아티탄", t:"อธิษฐาน", ex:"예) 라오 아티탄 (우리 기도해요)", tts:"อธิษฐาน. เราอธิษฐาน"},
+  {ko:"믿다", th:"츠어", t:"เชื่อ", ex:"예) 츠어 프라짜오 (하나님을 믿어요)", tts:"เชื่อ. เชื่อพระเจ้า"},
+  {ko:"노래하다", th:"렁플렝", t:"ร้องเพลง", ex:"예) 렁플렝 두어이깐 (같이 노래해요)", tts:"ร้องเพลง. ร้องเพลงด้วยกัน"},
+  {ko:"놀다", th:"렌", t:"เล่น", ex:"예) 렌 두어이깐 (같이 놀자)", tts:"เล่น. เล่นด้วยกัน"},
+  {ko:"도와주다", th:"추어이", t:"ช่วย", ex:"예) 추어이 두어이 (도와주세요)", tts:"ช่วย. ช่วยด้วย"},
+]},
+{ id:"p5", icon:"✨", title:"PART 5. 형용사 어휘", items:[
+  {ko:"좋다", th:"디", t:"ดี"},
+  {ko:"나쁘다", th:"마이 디", t:"ไม่ดี"},
+  {ko:"크다", th:"야이", t:"ใหญ่"},
+  {ko:"작다", th:"렉", t:"เล็ก"},
+  {ko:"예쁘다 / 잘생기다", th:"수아이 / 러", t:"สวย / หล่อ", tts:"สวย, หล่อ"},
+  {ko:"귀엽다", th:"나락", t:"น่ารัก"},
+  {ko:"맛있다", th:"아러이", t:"อร่อย"},
+  {ko:"행복하다", th:"미 쾀쑥", t:"มีความสุข"},
+  {ko:"슬프다", th:"싸오", t:"เศร้า"},
+  {ko:"재미있다", th:"싸눅", t:"สนุก"},
+  {ko:"덥다", th:"런", t:"ร้อน"},
+  {ko:"춥다", th:"나오", t:"หนาว"},
+  {ko:"비싸다", th:"팽", t:"แพง"},
+  {ko:"싸다", th:"툭", t:"ถูก"},
+  {ko:"새것이다", th:"마이", t:"ใหม่"},
+  {ko:"친절하다", th:"짜이디", t:"ใจดี", ex:"직역: 마음이 좋다"},
+]},
+{ id:"p6", icon:"💬", title:"PART 6. 부사/표현 어휘", items:[
+  {ko:"매우, 아주", th:"막", t:"มาก"},
+  {ko:"너무 많이", th:"막막", t:"มากๆ"},
+  {ko:"조금", th:"닛너이", t:"นิดหน่อย"},
+  {ko:"빨리", th:"레우 레우", t:"เร็วๆ"},
+  {ko:"천천히", th:"차차", t:"ช้าๆ"},
+  {ko:"지금", th:"떤니", t:"ตอนนี้"},
+  {ko:"항상", th:"싸머", t:"เสมอ"},
+  {ko:"같이, 함께", th:"두어이깐", t:"ด้วยกัน"},
+  {ko:"정말로", th:"찡찡", t:"จริงๆ"},
+  {ko:"또, 다시", th:"익", t:"อีก"},
+]},
+{ id:"p7", icon:"🔢", title:"PART 7. 숫자 1~10", note:"꿀팁: 11은 씹엣, 20은 이씹, 100은 러이", items:[
+  {ko:"1", th:"능", t:"หนึ่ง"},{ko:"2", th:"썽", t:"สอง"},{ko:"3", th:"쌈", t:"สาม"},
+  {ko:"4", th:"씨", t:"สี่"},{ko:"5", th:"하", t:"ห้า"},{ko:"6", th:"혹", t:"หก"},
+  {ko:"7", th:"쩻", t:"เจ็ด"},{ko:"8", th:"뺏", t:"แปด"},{ko:"9", th:"까오", t:"เก้า"},{ko:"10", th:"씹", t:"สิบ"},
+]},
+{ id:"p8", icon:"🗣️", title:"PART 8. 간단한 일상 문장", items:[
+  {ko:"저는 태국을 좋아합니다", th:"폼/디찬 첩 므앙타이 캅/카", t:"ผม/ดิฉันชอบเมืองไทยครับ/ค่ะ"},
+  {ko:"저는 행복해요", th:"폼/디찬 미 쾀쑥 캅/카", t:"ผม/ดิฉันมีความสุขครับ/ค่ะ"},
+  {ko:"배가 고파요", th:"히우 카오 캅/카", t:"หิวข้าวครับ/ค่ะ"},
+  {ko:"목이 말라요", th:"히우 남 캅/카", t:"หิวน้ำครับ/ค่ะ"},
+  {ko:"화장실이 어디예요?", th:"헝남 유 티나이 캅/카?", t:"ห้องน้ำอยู่ที่ไหนครับ/คะ"},
+  {ko:"이건 뭐예요?", th:"니 크 아라이 캅/카?", t:"นี่คืออะไรครับ/คะ"},
+  {ko:"얼마예요?", th:"타올라이 캅/카?", t:"เท่าไหร่ครับ/คะ"},
+  {ko:"천천히 말해주세요", th:"풋 차차 너이 캅/카", t:"พูดช้าๆ หน่อยครับ/ค่ะ"},
+  {ko:"다시 말해주세요", th:"풋 익 크랑 캅/카", t:"พูดอีกครั้งครับ/ค่ะ"},
+  {ko:"도와주세요", th:"추어이 두어이 캅/카", t:"ช่วยด้วยครับ/ค่ะ"},
+  {ko:"알아들었어요", th:"카오짜이 래우 캅/카", t:"เข้าใจแล้วครับ/ค่ะ"},
+  {ko:"못 알아들었어요", th:"마이 카오짜이 캅/카", t:"ไม่เข้าใจครับ/ค่ะ"},
+  {ko:"태국어 잘 못해요", th:"풋 타이 마이 껭 캅/카", t:"พูดไทยไม่เก่งครับ/ค่ะ"},
+  {ko:"맛있어요!", th:"아러이 막 캅/카!", t:"อร่อยมากครับ/ค่ะ"},
+]},
+{ id:"p9", icon:"✝️", title:"PART 9. 전도용 표현", note:"천천히, 미소와 함께, 진심을 담아 전해요!", items:[
+  {ko:"하나님", th:"프라짜오", t:"พระเจ้า"},
+  {ko:"예수님", th:"프라예수", t:"พระเยซู"},
+  {ko:"성경", th:"프라캄피", t:"พระคัมภีร์"},
+  {ko:"사랑", th:"쾀락", t:"ความรัก"},
+  {ko:"죄", th:"밥", t:"บาป"},
+  {ko:"천국", th:"싸완", t:"สวรรค์"},
+  {ko:"기도", th:"캄 아티탄", t:"คำอธิษฐาน"},
+  {ko:"교회", th:"크리스짝", t:"คริสตจักร"},
+  {ko:"믿음", th:"쾀 츠아", t:"ความเชื่อ"},
+  {ko:"구원", th:"쾀 럿", t:"ความรอด"},
+  {ko:"하나님은 당신을 사랑하세요", th:"프라짜오 락 쿤 캅/카", t:"พระเจ้ารักคุณครับ/ค่ะ"},
+  {ko:"예수님은 하나님의 아들이세요", th:"프라예수 뻰 붇 컹 프라짜오 캅/카", t:"พระเยซูเป็นบุตรของพระเจ้าครับ/ค่ะ"},
+  {ko:"예수님은 당신을 사랑하세요", th:"프라예수 락 쿤 캅/카", t:"พระเยซูรักคุณครับ/ค่ะ"},
+  {ko:"하나님이 축복하시기를", th:"프라짜오 우어이펀 캅/카", t:"ขอพระเจ้าอวยพรครับ/ค่ะ"},
+  {ko:"저는 예수님을 믿어요", th:"폼/디찬 츠아 프라예수 캅/카", t:"ผม/ดิฉันเชื่อพระเยซูครับ/ค่ะ"},
+  {ko:"우리 같이 교회에 가요", th:"라오 빠이 크리스짝 두어이깐 캅/카", t:"เราไปคริสตจักรด้วยกันนะครับ/นะคะ"},
+]},
+{ id:"p10", icon:"🌈", title:"PART 10. 어린이 친구에게", note:"어린이끼리는 격식 없이 \"캅/카\"를 빼고 편하게 말해도 돼요!", items:[
+  {ko:"안녕! (반말)", th:"싸왓디!", t:"สวัสดี"},
+  {ko:"너 이름이 뭐야?", th:"쿤 츠 아라이?", t:"คุณชื่ออะไร"},
+  {ko:"몇 살이야?", th:"아유 타올라이?", t:"อายุเท่าไหร่"},
+  {ko:"같이 놀자!", th:"마 렌 두어이깐!", t:"มาเล่นด้วยกัน"},
+  {ko:"재밌다!", th:"싸눅 막!", t:"สนุกมาก"},
+  {ko:"예쁘다!", th:"수어이 막!", t:"สวยมาก"},
+  {ko:"귀엽다!", th:"나락 막!", t:"น่ารักมาก"},
+  {ko:"너 정말 잘한다!", th:"쿤 껭 막!", t:"คุณเก่งมาก"},
+  {ko:"우리 친구야!", th:"라오 뻰 프안 깐!", t:"เราเป็นเพื่อนกัน"},
+]},
+{ id:"p11", icon:"🧳", title:"PART 11. 미션트립 현장 문장", items:[
+  {ko:"한국에서 왔어요", th:"마짝 쁘라텟 까올리 캅/카", t:"มาจากประเทศเกาหลีครับ/ค่ะ"},
+  {ko:"우리 교회에서 왔어요", th:"마짝 크리스짝 컹 라오 캅/카", t:"มาจากคริสตจักรของเราครับ/ค่ะ"},
+  {ko:"저희는 선교팀이에요", th:"푸억 라오 뻰 팀 미션 캅/카", t:"พวกเราเป็นทีมมิชชั่นครับ/ค่ะ"},
+  {ko:"선물이에요, 받아주세요", th:"니 뻰 컹콴 캅/카, 럽 너이", t:"นี่เป็นของขวัญครับ/ค่ะ รับหน่อยนะ"},
+  {ko:"사진 같이 찍어요!", th:"타이룹 두어이깐", t:"ถ่ายรูปด้วยกัน"},
+  {ko:"우리 3일 동안 있을 거예요", th:"라오 짜 유 쌈 완 캅/카", t:"เราจะอยู่สามวันครับ/ค่ะ"},
+  {ko:"만나서 정말 행복해요", th:"디짜이 막 티 다이 폽 쿤 캅/카", t:"ดีใจมากที่ได้พบคุณครับ/ค่ะ"},
+  {ko:"한국에 놀러 오세요!", th:"마티여우 까올리 너 캅/카!", t:"มาเที่ยวเกาหลีนะครับ/นะคะ"},
+]},
+];
+
+const TOP5 = [
+  {ko:"안녕하세요", th:"싸왓디 캅/카", t:"สวัสดีครับ/ค่ะ"},
+  {ko:"감사합니다", th:"컵쿤 캅/카", t:"ขอบคุณครับ/ค่ะ"},
+  {ko:"사랑해요", th:"폼/디찬 락 쿤 캅/카", t:"ผม/ดิฉันรักคุณครับ/ค่ะ"},
+  {ko:"하나님이 당신을 사랑하세요", th:"프라짜오 락 쿤 캅/카", t:"พระเจ้ารักคุณครับ/ค่ะ"},
+  {ko:"우리 친구해요!", th:"라오 뻰 프안 깐!", t:"เราเป็นเพื่อนกัน"},
+];
+
+const ALL = [];
+PARTS.forEach(p => p.items.forEach(it => ALL.push({...it, part:p.title, pid:p.id})));
+
+/* ── 저장 ── */
+let mem = {};
+const store = {
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return mem[k] ?? null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){ mem[k]=v; } }
+};
+let learned = new Set();
+try{ learned = new Set(JSON.parse(store.get("orc_thai_learned")||"[]")); }catch(e){}
+const keyOf = c => c.pid + "|" + c.ko + "|" + c.th;
+function saveLearned(){ store.set("orc_thai_learned", JSON.stringify([...learned])); }
+
+/* ── 발음 듣기 (Web Speech API) ── */
+let gender = store.get("orc_thai_gender") || "m";
+let thaiVoice = null;
+function pickVoice(){
+  const vs = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+  thaiVoice = vs.find(v => (v.lang||"").toLowerCase().startsWith("th")) || null;
+  document.getElementById("voiceNotice").style.display =
+    (window.speechSynthesis && !thaiVoice && vs.length > 0) ? "block" : "none";
+}
+if(window.speechSynthesis){
+  pickVoice();
+  speechSynthesis.onvoiceschanged = pickVoice;
+} else {
+  document.getElementById("voiceNotice").style.display = "block";
+}
+function genderize(text){
+  let s = text;
+  if(gender === "m"){
+    s = s.replace(/นะครับ\/นะคะ/g,"นะครับ")
+         .replace(/ครับ\/คะ/g,"ครับ").replace(/ครับ\/ค่ะ/g,"ครับ")
+         .replace(/ผม\/ดิฉัน/g,"ผม");
+  } else {
+    s = s.replace(/นะครับ\/นะคะ/g,"นะคะ")
+         .replace(/ครับ\/คะ/g,"คะ").replace(/ครับ\/ค่ะ/g,"ค่ะ")
+         .replace(/ผม\/ดิฉัน/g,"ดิฉัน");
+  }
+  return s.replace(/○○/g," ").replace(/\s+/g," ").trim();
+}
+function speak(item){
+  if(!window.speechSynthesis) return;
+  const text = genderize(item.tts || item.t);
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "th-TH";
+  if(thaiVoice) u.voice = thaiVoice;
+  u.rate = 0.85;
+  speechSynthesis.speak(u);
+}
+
+/* 성별 토글 */
+function setGender(g){
+  gender = g; store.set("orc_thai_gender", g);
+  document.getElementById("gM").classList.toggle("on", g==="m");
+  document.getElementById("gF").classList.toggle("on", g==="f");
+}
+document.getElementById("gM").addEventListener("click", ()=>setGender("m"));
+document.getElementById("gF").addEventListener("click", ()=>setGender("f"));
+setGender(gender);
+
+/* ── 탭 ── */
+document.querySelectorAll("nav.tabs button").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    document.querySelectorAll("nav.tabs button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));
+    document.getElementById("page-"+b.dataset.page).classList.add("on");
+    window.scrollTo(0,0);
+  });
+});
+
+/* ── TOP5 렌더 ── */
+const t5el = document.getElementById("top5");
+const circled = ["①","②","③","④","⑤"];
+TOP5.forEach((c,i)=>{
+  const row = document.createElement("div");
+  row.className = "row";
+  row.innerHTML = `<span class="tx">${circled[i]} <b>${c.th}</b> — ${c.ko}</span>`;
+  const btn = document.createElement("button");
+  btn.className = "spk"; btn.textContent = "🔊"; btn.setAttribute("aria-label","발음 듣기");
+  btn.addEventListener("click", ()=>speak(c));
+  row.appendChild(btn);
+  t5el.appendChild(row);
+});
+
+/* ── 학습 렌더 ── */
+const partsEl = document.getElementById("parts");
+PARTS.forEach((p,i)=>{
+  const d = document.createElement("details");
+  d.className = "part";
+  if(i===0) d.open = true;
+  d.innerHTML = `
+    <summary><span class="no">${p.icon}</span>${p.title}<span class="cnt">${p.items.length}개</span></summary>
+    <div class="plist">${p.note ? `<div class="tipline">💡 ${p.note}</div>` : ""}</div>`;
+  const list = d.querySelector(".plist");
+  p.items.forEach(it=>{
+    const row = document.createElement("div");
+    row.className = "pitem";
+    row.innerHTML = `
+      <div class="txt">
+        <span class="ko">${it.ko}</span>
+        <span class="th">${it.th}</span>
+        <span class="tt">${it.t}</span>
+        ${it.ex ? `<span class="ex">${it.ex}</span>` : ""}
+      </div>`;
+    const btn = document.createElement("button");
+    btn.className = "spk dark"; btn.textContent = "🔊"; btn.setAttribute("aria-label","발음 듣기");
+    btn.addEventListener("click", ()=>speak(it));
+    row.appendChild(btn);
+    list.appendChild(row);
+  });
+  partsEl.appendChild(d);
+});
+
+/* ── 범위 옵션 ── */
+function fillScope(sel){
+  sel.innerHTML = `<option value="all">전체 (${ALL.length}개)</option>` +
+    PARTS.map(p=>`<option value="${p.id}">${p.title} (${p.items.length}개)</option>`).join("");
+}
+fillScope(document.getElementById("cardScope"));
+fillScope(document.getElementById("quizScope"));
+
+/* ── 암기카드 ── */
+let deck = [...ALL], idx = 0;
+const fcard = document.getElementById("fcard");
+function scopeCards(v){ return v==="all" ? [...ALL] : ALL.filter(c=>c.pid===v); }
+function renderCard(){
+  const c = deck[idx];
+  fcard.classList.remove("flip");
+  document.getElementById("cardKo").textContent = c.ko;
+  document.getElementById("cardTh").textContent = c.th;
+  document.getElementById("cardTt").textContent = c.t;
+  document.getElementById("cardEx").textContent = c.ex || "";
+  document.getElementById("cardPart").textContent = c.part;
+  document.getElementById("cardPos").textContent = `${idx+1} / ${deck.length}`;
+  const isL = learned.has(keyOf(c));
+  const btn = document.getElementById("btnLearn");
+  btn.textContent = isL ? "✅ 외운 카드" : "⭐ 외웠어요";
+  btn.classList.toggle("done", isL);
+  document.getElementById("learnCount").textContent = `외운 카드 ${learned.size} / ${ALL.length}`;
+}
+fcard.addEventListener("click", ()=> fcard.classList.toggle("flip"));
+document.getElementById("cardSpeak").addEventListener("click", (e)=>{
+  e.stopPropagation();
+  speak(deck[idx]);
+});
+document.getElementById("btnPrev").addEventListener("click", ()=>{ idx=(idx-1+deck.length)%deck.length; renderCard(); });
+document.getElementById("btnNext").addEventListener("click", ()=>{ idx=(idx+1)%deck.length; renderCard(); });
+document.getElementById("btnLearn").addEventListener("click", ()=>{
+  const k = keyOf(deck[idx]);
+  learned.has(k) ? learned.delete(k) : learned.add(k);
+  saveLearned(); renderCard();
+});
+document.getElementById("cardScope").addEventListener("change", e=>{
+  deck = scopeCards(e.target.value); idx = 0; renderCard();
+});
+document.getElementById("btnShuffle").addEventListener("click", ()=>{
+  for(let i=deck.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [deck[i],deck[j]]=[deck[j],deck[i]]; }
+  idx=0; renderCard();
+});
+renderCard();
+
+/* ── 퀴즈 ── */
+let quiz=[], qIdx=0, score=0, answered=false;
+const $ = id => document.getElementById(id);
+function startQuiz(){
+  const pool = scopeCards($("quizScope").value);
+  const shuffled = [...pool].sort(()=>Math.random()-0.5);
+  quiz = shuffled.slice(0, Math.min(10, shuffled.length)).map(c=>{
+    const wrong = ALL.filter(x=>x.th!==c.th).sort(()=>Math.random()-0.5).slice(0,3).map(x=>x.th);
+    const opts = [...wrong, c.th].sort(()=>Math.random()-0.5);
+    return {q:c.ko, a:c.th, opts, item:c};
+  });
+  qIdx=0; score=0;
+  $("quizSetup").style.display="none";
+  $("quizDone").style.display="none";
+  $("quizPlay").style.display="block";
+  renderQ();
+}
+function renderQ(){
+  answered=false;
+  const q = quiz[qIdx];
+  $("qNo").textContent = `문제 ${qIdx+1} / ${quiz.length}`;
+  $("qText").textContent = q.q;
+  $("qScore").textContent = `점수: ${score}`;
+  $("qHint").textContent = "";
+  $("btnNextQ").style.display="none";
+  $("qListen").style.display="none";
+  $("qOpts").innerHTML = "";
+  q.opts.forEach(o=>{
+    const b = document.createElement("button");
+    b.className="opt"; b.textContent=o;
+    b.addEventListener("click", ()=>{
+      if(answered) return;
+      answered=true;
+      if(o===q.a){ b.classList.add("correct"); score++; $("qHint").textContent="정답! 🎉"; }
+      else{
+        b.classList.add("wrong");
+        [...$("qOpts").children].forEach(x=>{ if(x.textContent===q.a) x.classList.add("correct"); });
+        $("qHint").textContent="아쉬워요!";
+      }
+      $("qScore").textContent = `점수: ${score}`;
+      $("qListen").style.display="block";
+      $("btnNextQ").style.display="block";
+      $("btnNextQ").textContent = qIdx===quiz.length-1 ? "결과 보기 🏁" : "다음 문제 ▶";
+    });
+    $("qOpts").appendChild(b);
+  });
+}
+$("qListen").addEventListener("click", ()=>speak(quiz[qIdx].item));
+$("btnStartQuiz").addEventListener("click", startQuiz);
+$("btnNextQ").addEventListener("click", ()=>{
+  if(qIdx===quiz.length-1){
+    $("quizPlay").style.display="none";
+    $("quizDone").style.display="block";
+    $("finalScore").textContent = `${score} / ${quiz.length}`;
+    const r = score/quiz.length;
+    $("finalMsg").textContent =
+      r===1 ? "완벽해요! 껭 막! (정말 잘해요!)" :
+      r>=0.7 ? "디 막! (아주 좋아요!) 조금만 더 연습해요." :
+      "마이 뺀 라이! (괜찮아요!) 암기카드로 복습하고 다시 도전해요.";
+  } else { qIdx++; renderQ(); }
+});
+$("btnRetry").addEventListener("click", ()=>{
+  $("quizDone").style.display="none";
+  $("quizSetup").style.display="block";
+});
+
+/* ── PWA: 오프라인 캐시 등록 ── */
+if ("serviceWorker" in navigator && location.protocol === "https:") {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>

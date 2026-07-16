@@ -1,0 +1,15 @@
+{
+  "name": "오륜교회 미션트립 태국어 학습",
+  "short_name": "태국어 학습",
+  "description": "오륜교회 태국 미션트립 태국어 기초 학습앱 - 학습·암기카드·퀴즈·발음 듣기",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F8F4EC",
+  "theme_color": "#0E5F5B",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
