@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>รากฐานแห่งความเชื่อ · คริสตจักรไทยร่วมใจ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0F6B5F; --teal-dark:#0A4A42; --teal-tint:#E4F0ED;
+  --gold:#C9A227; --gold-soft:#F3E7C3;
+  --cream:#F7F2E7; --paper:#FFFFFF; --ink:#26312E; --ink-soft:#5C6B66;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Sarabun','Noto Sans Thai',-apple-system,sans-serif;
+  background:var(--cream); color:var(--ink);
+  font-size:17px; line-height:1.75;
+}
+.wrap{max-width:640px;margin:0 auto;padding:0 18px 70px}
+h1,h2,h3,.display{font-family:'Mitr','Sarabun',sans-serif;line-height:1.4}
+button{font-family:inherit;cursor:pointer;border:none}
+textarea,input{
+  font-family:inherit;font-size:16px;width:100%;
+  border:1.5px solid #D8D2C2;border-radius:10px;padding:11px 13px;
+  background:#FDFCF8;color:var(--ink);line-height:1.6;
+}
+textarea:focus,input:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+textarea{min-height:84px;resize:vertical}
+
+/* ── top bar ── */
+.topbar{
+  background:var(--teal-dark);color:#fff;
+  padding:14px 18px;display:flex;align-items:center;gap:10px;
+  position:sticky;top:0;z-index:20;
+}
+.topbar .church{font-size:13px;opacity:.85;letter-spacing:.4px}
+.topbar .home-btn{
+  margin-left:auto;background:rgba(255,255,255,.14);color:#fff;
+  border-radius:8px;padding:6px 13px;font-size:14px;
+}
+.gold-line{height:3px;background:linear-gradient(90deg,var(--gold),#E7CF7E)}
+
+/* ── cover ── */
+.cover{padding-top:44px;text-align:center}
+.cover .part{
+  display:inline-block;font-size:14px;letter-spacing:2px;color:var(--teal);
+  border:1px solid var(--teal);border-radius:99px;padding:3px 16px;margin-bottom:18px;
+}
+.cover h1{font-size:34px;color:var(--teal-dark);margin-bottom:6px}
+.cover .sub{color:var(--ink-soft);margin-bottom:8px}
+.cover .en{font-size:14px;color:var(--gold);letter-spacing:1px;margin-bottom:34px}
+.card{
+  background:var(--paper);border-radius:var(--radius);
+  padding:24px 22px;box-shadow:0 2px 10px rgba(15,107,95,.08);
+  text-align:left;margin-bottom:18px;color:var(--ink);
+}
+/* พื้นผิวสีอ่อนต้องใช้ตัวหนังสือเข้มเสมอ (แม้ในโหมดมืด) */
+.intro-box,.verse,.deep-box,.compare .side,.apply-list li,
+.lesson-item,.stage3 .st-box,.sum-item,.modal{color:var(--ink)}
+textarea::placeholder,input::placeholder{color:#98A29D}
+.card label{display:block;font-weight:600;font-size:15px;margin-bottom:6px;color:var(--teal-dark)}
+.field{margin-bottom:16px}
+.btn-primary{
+  display:block;width:100%;background:var(--teal);color:#fff;
+  font-size:18px;font-weight:600;border-radius:12px;padding:14px;
+  transition:background .15s;
+}
+.btn-primary:hover{background:var(--teal-dark)}
+.btn-primary:disabled{background:#B9C6C2;cursor:not-allowed}
+.preface{font-size:15.5px;color:var(--ink-soft)}
+.preface p{margin-bottom:10px}
+.preface .sign{color:var(--teal-dark);font-weight:600;margin-top:14px}
+details.preface-box summary{
+  cursor:pointer;font-weight:600;color:var(--teal);font-size:15px;
+  list-style:none;
+}
+details.preface-box summary::before{content:"📜 ";}
+details.preface-box[open] summary{margin-bottom:10px}
+
+/* ── contents (lesson list) ── */
+.contents h2{font-size:24px;color:var(--teal-dark);margin:28px 0 4px}
+.student-line{color:var(--ink-soft);font-size:15px;margin-bottom:16px}
+.student-line b{color:var(--teal-dark)}
+.progressbar{
+  height:10px;background:#E5DFD0;border-radius:99px;overflow:hidden;margin-bottom:22px;
+}
+.progressbar>div{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:99px;transition:width .5s}
+.lesson-item{
+  display:flex;align-items:center;gap:15px;width:100%;text-align:left;
+  background:var(--paper);border-radius:var(--radius);padding:16px 17px;margin-bottom:11px;
+  box-shadow:0 1px 6px rgba(15,107,95,.07);border:1.5px solid transparent;
+  transition:transform .12s;
+}
+.lesson-item:not(.locked):hover{transform:translateX(4px);border-color:var(--teal)}
+.lesson-item .num{
+  flex:0 0 44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Mitr';font-size:19px;font-weight:600;
+  background:var(--teal-tint);color:var(--teal);
+}
+.lesson-item.done .num{background:var(--teal);color:#fff}
+.lesson-item.locked{opacity:.55;background:#F1EDE2}
+.lesson-item.locked .num{background:#E2DCCB;color:#9A937F}
+.lesson-item .t{flex:1}
+.lesson-item .t .th{font-weight:600;font-size:16.5px;color:var(--ink)}
+.lesson-item .t .en{font-size:13px;color:var(--ink-soft)}
+.lesson-item .mark{font-size:21px}
+.lesson-item.done .mark{color:var(--gold)}
+.lesson-item.locked .mark{color:#B4AC97}
+.hint-locked{font-size:13.5px;color:var(--ink-soft);text-align:center;margin-top:14px}
+
+/* ── lesson page ── */
+.lesson-head{
+  background:var(--teal);color:#fff;border-radius:var(--radius);
+  padding:26px 22px;margin:22px 0 20px;position:relative;overflow:hidden;
+}
+.lesson-head::after{
+  content:"";position:absolute;right:-30px;top:-30px;width:130px;height:130px;
+  border-radius:50%;background:rgba(255,255,255,.08);
+}
+.lesson-head .crumb{font-size:13px;opacity:.85;letter-spacing:1px;margin-bottom:6px}
+.lesson-head h2{font-size:25px;margin-bottom:4px}
+.lesson-head .tag{font-size:15px;opacity:.92}
+.review{
+  background:var(--gold-soft);border-left:4px solid var(--gold);
+  border-radius:0 10px 10px 0;padding:12px 15px;font-size:15px;margin-bottom:18px;
+  color:#4A3D10;
+}
+.sec{margin-bottom:26px}
+.sec h3{
+  font-size:19px;color:var(--teal-dark);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.intro-box{
+  background:var(--paper);border:1.5px solid var(--teal-tint);
+  border-radius:var(--radius);padding:18px 19px;font-size:16px;
+}
+.intro-box p{margin-bottom:9px}
+.intro-box p:last-child{margin-bottom:0}
+.q-block{margin-bottom:15px}
+.q-block .q{
+  font-weight:600;font-size:15.5px;margin-bottom:7px;display:flex;gap:9px;
+}
+.q-block .q .qn{
+  flex:0 0 auto;background:var(--teal);color:#fff;border-radius:7px;
+  font-size:13px;padding:1px 9px;height:fit-content;margin-top:3px;font-family:'Mitr';
+}
+.verse{
+  background:var(--paper);border-radius:12px;padding:15px 17px;margin-bottom:11px;
+  border-left:4px solid var(--teal);box-shadow:0 1px 5px rgba(15,107,95,.06);
+}
+.verse .ref{font-weight:700;color:var(--teal-dark);font-size:15.5px;margin-bottom:4px}
+.verse .txt{font-size:16px}
+.deep-box{
+  background:var(--paper);border-radius:12px;padding:16px 18px;margin-bottom:11px;
+  box-shadow:0 1px 5px rgba(15,107,95,.06);
+}
+.deep-box .dt{font-weight:700;color:var(--teal-dark);margin-bottom:5px;font-size:16px}
+.compare{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch;
+  margin-bottom:11px;
+}
+.compare .side{
+  background:var(--paper);border-radius:12px;padding:14px 15px;font-size:14.5px;
+  box-shadow:0 1px 5px rgba(15,107,95,.06);
+}
+.compare .side .st{font-weight:700;margin-bottom:5px;font-size:15px}
+.compare .side.buddhist .st{color:#8A6D1F}
+.compare .side.bible{border:1.5px solid var(--teal);}
+.compare .side.bible .st{color:var(--teal-dark)}
+.compare .arrow{align-self:center;color:var(--gold);font-size:20px;font-weight:700}
+@media(max-width:460px){.compare{grid-template-columns:1fr}.compare .arrow{text-align:center}}
+.stage3{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:6px;align-items:center;margin-bottom:11px}
+.stage3 .st-box{background:var(--paper);border-radius:10px;padding:11px 8px;text-align:center;font-size:13px;box-shadow:0 1px 5px rgba(15,107,95,.06)}
+.stage3 .st-box b{display:block;color:var(--teal-dark);font-size:13.5px;margin-bottom:2px}
+.stage3 .ar{color:var(--gold);font-weight:700}
+@media(max-width:460px){.stage3{grid-template-columns:1fr}.stage3 .ar{text-align:center;transform:rotate(90deg)}}
+.apply-list{list-style:none}
+.apply-list li{
+  background:var(--paper);border-radius:10px;padding:12px 14px;margin-bottom:9px;
+  display:flex;gap:11px;align-items:flex-start;font-size:15.5px;
+  box-shadow:0 1px 4px rgba(15,107,95,.05);
+}
+.apply-list li::before{content:"▸";color:var(--gold);font-weight:700;flex:0 0 auto}
+.prayer{
+  background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff;
+  border-radius:var(--radius);padding:20px;font-size:16px;
+}
+.prayer .pt{font-weight:600;margin-bottom:8px;font-size:17px}
+.finish-zone{margin-top:34px;text-align:center}
+.finish-note{font-size:14px;color:var(--ink-soft);margin-bottom:12px}
+.btn-finish{
+  display:block;width:100%;
+  background:linear-gradient(135deg,var(--gold),#B08D1C);color:#fff;
+  font-size:19px;font-weight:700;font-family:'Mitr';
+  border-radius:14px;padding:16px;box-shadow:0 4px 14px rgba(201,162,39,.35);
+  transition:transform .12s;
+}
+.btn-finish:hover{transform:translateY(-2px)}
+.btn-finish:disabled{background:#C9C2AE;box-shadow:none;transform:none;cursor:wait}
+.done-banner{
+  background:var(--teal-tint);border:1.5px solid var(--teal);border-radius:12px;
+  padding:14px;text-align:center;color:var(--teal-dark);font-weight:600;
+}
+.nav-row{display:flex;gap:10px;margin-top:18px}
+.nav-row button{
+  flex:1;background:var(--paper);color:var(--teal-dark);border:1.5px solid var(--teal);
+  border-radius:11px;padding:12px;font-size:15.5px;font-weight:600;
+}
+
+/* ── records (บันทึกของฉัน) ── */
+.btn-records{
+  display:block;width:100%;margin-top:6px;
+  background:var(--paper);color:var(--teal-dark);
+  border:1.5px dashed var(--teal);border-radius:12px;
+  padding:13px;font-size:15.5px;font-weight:600;
+}
+.rec-lesson{
+  background:var(--paper);border-radius:var(--radius);
+  padding:18px;margin-bottom:14px;color:var(--ink);
+  box-shadow:0 1px 6px rgba(15,107,95,.07);
+}
+.rec-lesson .rl-head{
+  display:flex;align-items:center;gap:10px;margin-bottom:10px;
+  padding-bottom:9px;border-bottom:1.5px solid var(--teal-tint);
+}
+.rec-lesson .rl-head .n{
+  flex:0 0 32px;height:32px;border-radius:50%;background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:'Mitr';font-size:15px;
+}
+.rec-lesson .rl-head .tt{flex:1}
+.rec-lesson .rl-head .tt b{color:var(--teal-dark);font-size:16px}
+.rec-lesson .rl-head .tt span{display:block;font-size:12.5px;color:var(--ink-soft)}
+.rec-qa{margin-bottom:10px}
+.rec-qa .rq{font-size:14px;font-weight:600;color:var(--teal-dark)}
+.rec-qa .ra{
+  font-size:15px;background:#FBF8EF;border-left:3px solid var(--gold);
+  border-radius:0 8px 8px 0;padding:8px 11px;margin-top:3px;white-space:pre-wrap;
+}
+.rec-qa .ra.empty{color:#A39C88;font-style:italic;border-left-color:#D8D2C2;background:#F6F3EA}
+.rec-actions{display:flex;gap:8px;margin-top:12px}
+.rec-actions button{
+  flex:1;border-radius:9px;padding:9px;font-size:14px;font-weight:600;
+}
+.rec-actions .resend{background:var(--teal);color:#fff}
+.rec-actions .copy1{background:var(--teal-tint);color:var(--teal-dark)}
+.rec-empty{
+  text-align:center;color:var(--ink-soft);background:var(--paper);
+  border-radius:var(--radius);padding:26px;font-size:15px;
+}
+.rec-topactions{display:flex;gap:9px;margin:16px 0}
+.rec-topactions button{
+  flex:1;background:var(--paper);color:var(--teal-dark);border:1.5px solid var(--teal);
+  border-radius:11px;padding:11px;font-size:14.5px;font-weight:600;
+}
+
+
+.confetti-head{text-align:center;padding:36px 0 8px}
+.confetti-head .big{font-size:52px}
+.confetti-head h2{font-size:27px;color:var(--teal-dark);margin-top:6px}
+.confetti-head p{color:var(--ink-soft)}
+.confetti-head p b{color:var(--teal-dark)}
+.sum-item{
+  display:flex;gap:14px;background:var(--paper);border-radius:12px;
+  padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 5px rgba(15,107,95,.06);
+}
+.sum-item .n{
+  flex:0 0 36px;height:36px;border-radius:50%;background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:'Mitr';font-weight:600;
+}
+.sum-item .tt b{display:block;color:var(--teal-dark)}
+.sum-item .tt span{font-size:14.5px;color:var(--ink-soft)}
+
+/* ── modal ── */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(20,35,32,.55);z-index:50;
+  display:flex;align-items:center;justify-content:center;padding:22px;
+}
+.modal{
+  background:var(--paper);border-radius:16px;max-width:420px;width:100%;
+  padding:26px 24px;text-align:center;
+}
+.modal .icon{font-size:44px;margin-bottom:8px}
+.modal h3{color:var(--teal-dark);font-size:20px;margin-bottom:8px}
+.modal p{font-size:15px;color:var(--ink-soft);margin-bottom:18px}
+.modal .btn-primary{font-size:16px;padding:12px}
+.hidden{display:none!important}
+footer{
+  text-align:center;font-size:13px;color:var(--ink-soft);
+  padding:30px 0 10px;
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ── โหมดมืด: ตัวหนังสือบนพื้นหลังของหน้าให้สว่างขึ้น ── */
+@media (prefers-color-scheme: dark){
+  html,body{background:#16201D;color:#E9F1EE}
+  .sec h3,.contents h2,.cover h1,.confetti-head h2,.rec-title{color:#9BDCCD!important}
+  .q-block .q{color:#E9F1EE}
+  .cover .sub,.cover .en,.student-line,.hint-locked,.finish-note,
+  footer,.sec-hint,.confetti-head p{color:#B7C4BF}
+  .student-line b,.confetti-head p b{color:#9BDCCD!important}
+  .cover .part{color:#9BDCCD;border-color:#9BDCCD}
+  .progressbar{background:#2A3733}
+  .lesson-item.locked{background:#232D2A;color:#8D9A95}
+  .lesson-item.locked .t .th{color:#AEB9B4}
+  .lesson-item.locked .t .en{color:#8D9A95}
+  .lesson-item.locked .num{background:#33403B;color:#8D9A95}
+  .nav-row button{background:#20302C;color:#9BDCCD;border-color:#3E5A53}
+  textarea,input{background:#FDFCF8;color:var(--ink)}
+  .done-banner{background:#1E3B35;border-color:#3E8578;color:#9BDCCD}
+  .btn-records{background:#20302C;color:#9BDCCD;border-color:#3E8578}
+  .rec-topactions button{background:#20302C;color:#9BDCCD;border-color:#3E5A53}
+  .rec-empty{background:#232D2A;color:#B7C4BF}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span style="font-size:20px">✝️</span>
+  <div>
+    <div style="font-family:'Mitr';font-size:16px">รากฐานแห่งความเชื่อ</div>
+    <div class="church">คริสตจักรไทยร่วมใจ · 한마음태국인교회</div>
+  </div>
+  <button class="home-btn hidden" id="homeBtn" onclick="goContents()">สารบัญ</button>
+</div>
+<div class="gold-line"></div>
+
+<div class="wrap">
+  <!-- ══════════ COVER ══════════ -->
+  <section id="viewCover" class="cover">
+    <div style="height:38px"></div>
+    <span class="part">ภาค 1</span>
+    <h1>รากฐานแห่งความเชื่อ</h1>
+    <div class="sub">แบบเรียนศึกษาพระคัมภีร์ · 6 บทเรียน</div>
+    <div class="en">FOUNDATIONS OF FAITH</div>
+
+    <div class="card">
+      <div class="field">
+        <label for="inpName">ชื่อ-นามสกุล / Name <span style="color:#C0392B">*</span></label>
+        <input id="inpName" type="text" placeholder="กรุณากรอกชื่อของคุณ" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="inpDate">วันที่เริ่มเรียน</label>
+        <input id="inpDate" type="date">
+      </div>
+      <button class="btn-primary" onclick="startCourse()">เริ่มเรียน →</button>
+    </div>
+
+    <div class="card">
+      <details class="preface-box">
+        <summary>คำนำจากศิษยาภิบาล</summary>
+        <div class="preface">
+          <p><b>พี่น้องที่รักทุกท่าน</b></p>
+          <p>ขอบคุณพระเจ้าที่ทรงนำพาให้พวกเราได้มาเรียนรู้พระวจนะของพระองค์ด้วยกัน ไม่ว่าคุณจะเพิ่งเริ่มต้นเดินในความเชื่อหรือเป็นคริสเตียนมาสักระยะแล้ว หนังสือเล่มเล็กนี้ถูกเตรียมไว้สำหรับคุณโดยเฉพาะ</p>
+          <p>ภาค 1 นี้ มีชื่อว่า "รากฐานแห่งความเชื่อ" เพราะเราเชื่อว่าชีวิตคริสเตียนที่มั่นคงต้องเริ่มจากรากที่แข็งแรง ทั้ง 6 บทในเล่มนี้จะพาเราเดินทางจากจุดเริ่มต้นของมนุษย์ ผ่านความเป็นจริงของบาปและพระคุณ จนถึงหัวใจของข่าวประเสริฐ — การสิ้นพระชนม์และการฟื้นคืนพระชนม์ของพระเยซูคริสต์</p>
+          <p>อย่าเรียนคนเดียว เรียนกับผู้นำหรือเพื่อนที่คุณไว้วางใจ เปิดใจถามคำถามที่คุณสงสัยจริงๆ ไม่มีคำถามไหนที่ "ไม่ควรถาม" ในที่นี้ พระเจ้าไม่กลัวความสงสัยของเรา พระองค์ทรงยินดีกับทุกคนที่แสวงหาพระองค์ด้วยใจจริง</p>
+          <p class="sign">ด้วยความรักในพระคริสต์<br>อ.จักร (Pastor Jakkr)<br>ศิษยาภิบาลคริสตจักรไทยร่วมใจ · ดงดูชอน เกาหลีใต้</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══════════ CONTENTS ══════════ -->
+  <section id="viewContents" class="contents hidden">
+    <h2>📖 สารบัญบทเรียน</h2>
+    <div class="student-line" id="studentLine"></div>
+    <div class="progressbar"><div id="progFill" style="width:0%"></div></div>
+    <div id="lessonList"></div>
+    <div id="recordsBtnWrap"></div>
+    <p class="hint-locked">🔒 ต้องเรียนจบบทก่อนหน้า จึงจะเปิดบทถัดไปได้<br>เมื่อกด "เรียนจบบทนี้" ระบบจะส่งอีเมลแจ้งอาจารย์อัตโนมัติ</p>
+  </section>
+
+  <!-- ══════════ LESSON ══════════ -->
+  <section id="viewLesson" class="hidden"></section>
+
+  <!-- ══════════ RECORDS ══════════ -->
+  <section id="viewRecords" class="hidden"></section>
+
+  <!-- ══════════ SUMMARY ══════════ -->
+  <section id="viewSummary" class="hidden"></section>
+
+  <footer>คริสตจักรไทยร่วมใจ · Thai Ruamjai Church<br>ภาค 1 รากฐานแห่งความเชื่อ</footer>
+</div>
+
+<!-- modal -->
+<div class="modal-bg hidden" id="modalBg">
+  <div class="modal">
+    <div class="icon" id="mIcon">🎉</div>
+    <h3 id="mTitle"></h3>
+    <p id="mBody"></p>
+    <button class="btn-primary" onclick="closeModal()">ตกลง</button>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   CONFIG
+════════════════════════════════════════════ */
+const NOTIFY_EMAIL = "perfumeran@gmail.com";
+const COURSE_NAME  = "ภาค 1 รากฐานแห่งความเชื่อ";
+const STORE_KEY    = "trc_foundation_p1_v1";
+
+/* ════════════════════════════════════════════
+   LESSON DATA (จากหนังสือเล่มเล็ก A5)
+════════════════════════════════════════════ */
+const LESSONS = [
+{
+ no:1, th:"การสร้างและการตกในบาป", en:"Creation & Fall",
+ tag:"ฉันมาจากไหน และอะไรคือสิ่งที่ผิดพลาด?",
+ review:null,
+ sum:"เราถูกสร้างตามพระฉายของพระเจ้า แต่บาปทำให้ห่างจากพระองค์",
+ intro:["คุณเคยสงสัยบ้างไหมว่า — ทำไมชีวิตมนุษย์จึงมีทั้งความงดงามและความเจ็บปวดอยู่ด้วยกัน? ทำไมเราจึงอยากทำดี แต่บางครั้งก็เลือกทางผิด?",
+ "พระคัมภีร์เริ่มต้นด้วยคำตอบที่ชัดเจน: มนุษย์ถูกสร้างมาเพื่อความดี ตามพระฉายของพระเจ้า แต่การเลือกครั้งหนึ่งของอาดัมและเอวาได้เปลี่ยนแปลงทุกสิ่ง",
+ "บทนี้เราจะเรียนรู้ว่าเราเป็นใคร มาจากไหน และอะไรคือสาเหตุที่แท้จริงของปัญหาในโลกและในชีวิตของเรา"],
+ leadQ:["ทำไมโลกนี้จึงสวยงาม แต่ก็เต็มไปด้วยความเจ็บปวดด้วย?",
+ "ก่อนเชื่อในพระเยซู คุณคิดอย่างไรกับคำถามว่า 'ฉันมาจากไหน?'",
+ "ทำไมผู้คนจึงโกหก เกลียดชัง และทำร้ายกัน?"],
+ verses:[
+  {ref:"ปฐมกาล 1:27, 31", txt:"พระเจ้าทรงสร้างมนุษย์ตามพระฉายของพระองค์... พระเจ้าทอดพระเนตรสิ่งสารพัดที่ทรงสร้างไว้ และดูเถิด สิ่งเหล่านั้นดีมาก"},
+  {ref:"ปฐมกาล 3:6-7", txt:"นางก็เก็บผลไม้นั้นกิน และยังให้สามีของนางกินด้วย แล้วตาของทั้งสองคนก็เปิดออก พวกเขาก็รู้ว่าตนเองเปลือยเปล่า"},
+  {ref:"โรม 3:23", txt:"เพราะว่าทุกคนทำบาป และเสื่อมจากพระสิริของพระเจ้า"}],
+ deep:{boxes:[
+  {t:"① พระฉายของพระเจ้า (Imago Dei)", d:"มนุษย์ถูกสร้างตามพระฉายของพระเจ้า — เราสามารถคิด รัก และสร้างสรรค์ได้ ทุกคนมีศักดิ์ศรีที่ไม่ควรถูกดูถูก"},
+  {t:"② การตกในบาป — การเลือกครั้งเดียวที่เปลี่ยนทุกอย่าง", d:"อาดัมและเอวาเลือกตัวเองมากกว่าพระเจ้า ไม่ใช่แค่ละเมิดกฎ แต่ทำลายความสัมพันธ์กับพระเจ้า บาปและความตายจึงเข้าสู่มนุษยชาติทุกคน"},
+  {t:"③ แต่นี่ยังไม่ใช่บทสรุป", d:"พระเจ้าไม่ทรงละทิ้งเรา ทันทีหลังการตกในบาป พระองค์ทรงให้คำสัญญาแห่งความรอด (ปฐมกาล 3:15) นี่คือจุดเริ่มต้นของเรื่องราวแห่งความรอด"}]},
+ refQ:["ความจริงที่ว่า 'เราถูกสร้างตามพระฉายของพระเจ้า' มีความหมายต่อการมองตัวเองอย่างไร?",
+ "คุณเห็นภาพตัวเองในเรื่องของอาดัมและเอวาบ้างไหม? เมื่อไหร่ที่คุณเลือกวิธีของตัวเองมากกว่าพระเจ้า?",
+ "ในฐานะที่เติบโตมาในพุทธศาสนา คุณเข้าใจคำว่า 'บาป' อย่างไร? แตกต่างจากที่พระคัมภีร์สอนอย่างไร?",
+ "ความจริงที่ว่าพระเจ้ายังทรงให้คำสัญญาแห่งความรอดหลังการตกในบาป มีความหมายอย่างไรสำหรับคุณ?"],
+ apply:["ทุกเช้าพูดว่า 'ฉันเป็นสิ่งมีชีวิตที่พระเจ้าทรงสร้าง' แล้วไตร่ตรองความหมายของมัน",
+ "อ่านปฐมกาล 1-3 ช้าๆ และจดจำข้อที่ประทับใจที่สุดหนึ่งข้อ",
+ "นึกถึงครั้งที่เลือกวิธีของตัวเองมากกว่าพระเจ้า แล้วสารภาพต่อพระองค์"],
+ prayer:"พระบิดา ขอบคุณที่ทรงสร้างข้าพระองค์ตามพระฉายของพระองค์ โปรดให้ข้าพระองค์เห็นคุณค่าของตนเอง และกล้าเผชิญกับปัญหาบาปในชีวิต ขอบคุณที่ไม่ทรงละทิ้งเราแม้หลังการตกในบาป อธิษฐานในพระนามพระเยซู อาเมน"
+},
+{
+ no:2, th:"บาปและพระคุณ", en:"Sin & Grace",
+ tag:"พระเจ้าทรงมองปัญหาของฉันอย่างไร?",
+ review:"บทที่ 1: พระเจ้าทรงสร้างมนุษย์ดีมาก แต่บาปของอาดัมและเอวาทำให้ความสัมพันธ์กับพระเจ้าขาดสะบั้น",
+ sum:"บาปแก้ด้วยตนเองไม่ได้ พระเจ้าประทานพระคุณให้โดยไม่คิดค่าตอบแทน",
+ intro:["เราทุกคนรู้ว่าตัวเองมีปัญหา — บางครั้งเราทำในสิ่งที่รู้ว่าผิด บางครั้งเราพยายามแก้ไขตัวเองแต่ล้มเหลวซ้ำแล้วซ้ำเล่า ในพุทธศาสนา เราถูกสอนให้แก้ปัญหาด้วยตัวเอง — สะสมบุญ ทำกรรมดี เพื่อล้างกรรมชั่ว",
+ "แต่พระคัมภีร์บอกว่า ปัญหาบาปลึกกว่านั้นมาก เราแก้มันด้วยตัวเองไม่ได้ และนั่นคือเหตุผลที่พระเจ้าทรงทำสิ่งที่เราคาดไม่ถึง — พระองค์ทรงมาหาเราก่อน",
+ "บทนี้เราจะค้นพบว่า 'พระคุณ' หมายความว่าอะไร และมันแตกต่างจากทุกสิ่งที่เราเคยรู้อย่างไร"],
+ leadQ:["เมื่อได้ยินคำว่า 'บาป' คุณนึกถึงอะไร? ในวัฒนธรรมไทย คำนี้ถูกเข้าใจอย่างไร?",
+ "เคยรู้ว่าสิ่งที่ทำผิด แต่ยังทำซ้ำอีกบ้างไหม? ตอนนั้นรู้สึกอย่างไร?",
+ "เคยได้รับการให้อภัยที่ไม่คาดคิดบ้างไหม? รู้สึกอย่างไร?"],
+ verses:[
+  {ref:"โรม 6:23", txt:"เพราะว่าค่าจ้างของบาปคือความตาย แต่ของประทานจากพระเจ้าคือชีวิตนิรันดร์ในพระเยซูคริสต์"},
+  {ref:"เอเฟซัส 2:8-9", txt:"ท่านทั้งหลายได้รับความรอดโดยพระคุณ ผ่านทางความเชื่อ และมิใช่โดยตัวท่านเอง แต่เป็นของประทานจากพระเจ้า ความรอดนั้นไม่ได้มาจากการประพฤติ เพื่อไม่ให้ใครอวดได้"},
+  {ref:"1 ยอห์น 1:9", txt:"ถ้าเราสารภาพบาป พระองค์ทรงสัตย์ซื่อและเที่ยงธรรม จะทรงอภัยบาปของเรา และชำระเราให้พ้นจากความอธรรมทั้งสิ้น"}],
+ deep:{compare:{
+  a:{t:"🪷 กรรม (พุทธ)", d:"กรรมชั่วต้องชดใช้เอง ต้องแก้ปัญหาด้วยตนเอง ทำบุญเพื่อล้างกรรม"},
+  b:{t:"✝️ บาปและพระคุณ (พระคัมภีร์)", d:"เราแก้ปัญหาบาปด้วยตนเองไม่ได้ พระเจ้าทรงมาหาเราผ่านพระเยซู และประทานการอภัยเป็นของขวัญ"}},
+  boxes:[{t:"พระคุณ (Grace) คืออะไร?", d:"ของประทานที่ให้แก่ผู้ที่ไม่สมควรได้รับ ไม่ใช่รางวัลสำหรับความดี แต่เป็นการแสดงออกของความรักอันยิ่งใหญ่ของพระเจ้า เราเพียงรับด้วยความเชื่อ"}]},
+ refQ:["ความแตกต่างระหว่าง 'กรรม' และ 'พระคุณ' ส่งผลต่อวิธีที่คุณมองตัวเองและพระเจ้าอย่างไร?",
+ "เอเฟซัส 2:8-9 บอกว่าความรอดเป็น 'ของประทาน' ไม่ใช่ผลจากการทำความดี สิ่งนี้หมายความว่าอะไรสำหรับคุณ?",
+ "1 ยอห์น 1:9 สัญญาว่าพระเจ้าจะอภัยให้เสมอถ้าเราสารภาพ มีสิ่งที่อยากสารภาพต่อพระเจ้าไหม?",
+ "ตอนนี้คุณกำลังดำเนินชีวิตในฐานะผู้ที่ได้รับพระคุณอยู่ไหม? มีอะไรที่ขัดขวางบ้าง?"],
+ apply:["ทุกคืนก่อนนอน ใช้เวลา 5 นาทีสารภาพบาปต่อพระเจ้า (จำ 1 ยอห์น 1:9)",
+ "ท่องจำเอเฟซัส 2:8-9 และเขียนว่าข้อนี้มีความหมายอย่างไรสำหรับชีวิตคุณ",
+ "ถ้ามีใครที่คุณทำให้เขาเจ็บปวด ให้ก้าวไปขอโทษในสัปดาห์นี้"],
+ prayer:"พระบิดา ข้าพระองค์สารภาพว่าตนเองเป็นคนบาป และไม่สามารถแก้ปัญหานี้ได้เอง ขอบคุณที่ทรงรักข้าพระองค์ก่อน และประทานพระคุณผ่านพระเยซู ข้าพระองค์รับพระคุณนั้นในวันนี้ อธิษฐานในพระนามพระเยซู อาเมน"
+},
+{
+ no:3, th:"บัญญัติและข่าวประเสริฐ", en:"Law & Gospel",
+ tag:"สิ่งที่พระเจ้าทรงเรียกร้อง กับสิ่งที่พระเจ้าประทานให้",
+ review:"บทที่ 2: บาปแก้ได้ด้วยพระคุณของพระเจ้าเท่านั้น ไม่ใช่ความพยายามของเราเอง",
+ sum:"บัญญัติชี้บาป ข่าวประเสริฐให้ความรอดผ่านพระเยซู",
+ intro:["ลองนึกถึงสองประโยคนี้: 'คุณต้องทำ...' กับ 'มันสำเร็จแล้ว' ความรู้สึกต่างกันอย่างไร?",
+ "บัญญัติคือมาตรฐานของพระเจ้า — มันดีและบริสุทธิ์ แต่เมื่อเราส่องกระจก เราเห็นว่าตัวเองไม่สามารถบรรลุมาตรฐานนั้นได้เลย ข่าวประเสริฐคือสิ่งที่แตกต่างออกไปอย่างสิ้นเชิง — ไม่ใช่สิ่งที่เราต้องทำ แต่เป็นสิ่งที่พระเจ้าได้ทำแล้วเพื่อเรา",
+ "บทนี้เราจะเข้าใจว่าทั้งสองสิ่งนี้ทำงานร่วมกันอย่างไร และทำไมข่าวประเสริฐจึงแตกต่างจากทุกศาสนาในโลก"],
+ leadQ:["เคยรู้สึกว่ากฎระเบียบมากเกินไปบ้างไหม? กฎทำให้ความสัมพันธ์ดีขึ้นหรือเป็นภาระ?",
+ "'ทำดีได้ดี ทำชั่วได้ชั่ว' คุณเห็นด้วยไหม? คริสต์ศาสนาแตกต่างจากคำพูดนั้นอย่างไร?"],
+ verses:[
+  {ref:"โรม 3:20", txt:"จะไม่มีมนุษย์คนใดถูกนับว่าชอบธรรมในสายพระเนตรของพระองค์ด้วยการประพฤติตามบัญญัติ เพราะว่าบัญญัติทำให้รู้จักบาป"},
+  {ref:"กาลาเทีย 3:24", txt:"บัญญัติจึงเป็นพี่เลี้ยงนำเราไปหาพระคริสต์ เพื่อเราจะได้รับการนับว่าชอบธรรมโดยความเชื่อ"},
+  {ref:"ยอห์น 3:16", txt:"เพราะว่าพระเจ้าทรงรักโลกจนถึงขนาดประทานพระบุตรองค์เดียวของพระองค์ เพื่อทุกคนที่วางใจในพระบุตรนั้นจะไม่พินาศ แต่มีชีวิตนิรันดร์"}],
+ deep:{compare:{
+  a:{t:"บัญญัติบอกว่า", d:"• ต้องทำ... • เรียกร้อง • เปิดเผยบาป • ตัดสินลงโทษ • ขึ้นอยู่กับการกระทำ"},
+  b:{t:"ข่าวประเสริฐบอกว่า", d:"• สำเร็จแล้ว! • ให้เป็นของขวัญ • แก้ปัญหาบาป • ให้อิสรภาพ • ขึ้นอยู่กับความเชื่อ"}},
+  boxes:[{t:"การทำบุญ ≠ ข่าวประเสริฐ", d:"ในพุทธศาสนาไทย การทำบุญเป็นการลงทุนเพื่อชาติหน้า — 'ฉันต้องทำมากกว่านี้' แต่ข่าวประเสริฐบอกว่า พระเยซูทรงทำสำเร็จแล้ว และประทานให้เราฟรี เราเพียงแค่รับ"}]},
+ refQ:["ความแตกต่างระหว่างบัญญัติและข่าวประเสริฐทำให้คุณรู้สึกอย่างไร?",
+ "กาลาเทีย 3:24 บอกว่าบัญญัตินำเราไปหาพระคริสต์ ในชีวิตของคุณ มโนธรรมเคยนำคุณเข้าหาพระเยซูบ้างไหม?",
+ "คุณจะอธิบายความแตกต่างระหว่างการทำบุญและพระคุณให้เพื่อนชาวไทยฟังอย่างไร?"],
+ apply:["ท่องจำยอห์น 3:16 แทนคำว่า 'โลก' ด้วยชื่อของคุณเอง แล้วฟังว่ารู้สึกอย่างไร",
+ "เขียนโรม 8:1 ติดไว้ที่มองเห็น เมื่อรู้สึกผิดให้อ่านออกเสียง",
+ "ลองอธิบายความแตกต่างระหว่างการทำบุญกับพระคุณให้เพื่อนหนึ่งคนฟัง"],
+ prayer:"พระบิดา ข้าพระองค์ไม่สามารถรักษาบัญญัติได้อย่างสมบูรณ์ แต่ขอบคุณที่พระเยซูทรงทำสำเร็จแทน ขอให้ข้าพระองค์มีชีวิตในพระคุณอย่างอิสระ อธิษฐานในพระนามพระเยซู อาเมน"
+},
+{
+ no:4, th:"ความเชื่อและการกระทำ", en:"Faith & Deeds",
+ tag:"คนที่ได้รับความรอดแล้วควรดำเนินชีวิตอย่างไร?",
+ review:"บทที่ 3: บัญญัติชี้บาปของเรา แต่ข่าวประเสริฐให้การอภัยและอิสรภาพผ่านพระเยซู",
+ sum:"รอดโดยความเชื่อ ความเชื่อที่มีชีวิตออกผลในชีวิต",
+ intro:["มีคำถามที่หลายคนสงสัย: 'ถ้ารอดได้แค่เชื่อ แล้วทำไมต้องใช้ชีวิตดีด้วย?' หรืออีกด้านหนึ่ง 'ถ้าต้องทำดีด้วย แสดงว่าความเชื่ออย่างเดียวไม่พอใช่ไหม?'",
+ "พระคัมภีร์ตอบทั้งสองคำถามนี้ด้วยภาพที่เข้าใจง่าย — ต้นไม้และผลไม้ ต้นไม้ดีไม่จำเป็นต้องพยายามออกผล เมื่อรากแข็งแรง ผลออกมาเองตามธรรมชาติ",
+ "ความเชื่อและการกระทำไม่ใช่สิ่งที่ขัดแย้งกัน แต่เป็นสิ่งที่เชื่อมกันอย่างแยกไม่ออก บทนี้เราจะเรียนรู้ว่าชีวิตที่ได้รับความรอดแล้วมีหน้าตาอย่างไร"],
+ leadQ:["'แค่เชื่อก็พอ' ถ้าจริง แปลว่าทำอะไรก็ได้หลังจากเชื่อใช่ไหม?",
+ "ต้นไม้ออกผลได้อย่างไร? รากแข็งแรงแล้วผลออกเอง หรือต้นไม้ต้องพยายามออกผล?"],
+ verses:[
+  {ref:"ยากอบ 2:17, 26", txt:"ความเชื่อที่ไม่มีการกระทำก็ตายอยู่แล้วในตัวเอง... ร่างกายที่ไม่มีวิญญาณก็ตาย ความเชื่อที่ไม่มีการกระทำก็ตายเช่นกัน"},
+  {ref:"เอเฟซัส 2:10", txt:"เราเป็นผลงานฝีมือของพระองค์ ที่ทรงสร้างในพระเยซูคริสต์เพื่อให้ทำการดี ซึ่งพระเจ้าทรงกำหนดไว้ล่วงหน้าแล้ว"},
+  {ref:"มัทธิว 7:16-17", txt:"ท่านจะรู้จักพวกเขาได้จากผลของเขา... ต้นไม้ดีย่อมให้ผลดี ต้นไม้เสียย่อมให้ผลเสีย"}],
+ deep:{boxes:[
+  {t:"💡 อุปมาต้นไม้และผลไม้", d:"ต้นแอปเปิ้ลไม่ต้องพยายามออกผล — เมื่อรากแข็งแรง ผลออกมาเอง ความเชื่อเหมือนราก การกระทำเหมือนผล เมื่อราก (ความเชื่อ) แข็งแรง ผล (การกระทำ) ออกมาตามธรรมชาติ"}],
+  compare:{
+  a:{t:"ความเชื่อ", d:"• หนทางแห่งความรอด • ของประทานจากพระเจ้า • รากของการกระทำ • ถ้ามีชีวิตจะออกผล"},
+  b:{t:"การกระทำ", d:"• หลักฐานของความรอด • ออกมาตามธรรมชาติ • ผลของความเชื่อ • ถ้าไม่มีคือความเชื่อตาย"}}},
+ refQ:["'ความเชื่อที่ไม่มีการกระทำคือความเชื่อที่ตาย' ฟังดูขัดแย้งกับ 'รอดโดยความเชื่อ' อย่างไร? คุณเข้าใจความสัมพันธ์นี้อย่างไร?",
+ "รากแห่งความเชื่อของคุณแข็งแรงแค่ไหน? มีผลไม้อะไรปรากฏในชีวิตของคุณบ้าง?",
+ "ความแตกต่างระหว่างการทำดีเพื่อความรอด (บุญ) กับการทำดีเพราะได้รับความรอดแล้ว (พระคุณ) คืออะไร?"],
+ apply:["สัปดาห์นี้มองหาคนที่ต้องการความช่วยเหลือและรับใช้ด้วยการกระทำที่เป็นรูปธรรม",
+ "ทุกเช้าถามตัวเองว่า 'วันนี้ความเชื่อของฉันจะแสดงออกเป็นการกระทำอะไร?'",
+ "ท่องจำเอเฟซัส 2:10 'เราเป็นผลงานฝีมือของพระองค์ เพื่อให้ทำการดี'"],
+ prayer:"พระบิดา ความรอดมาโดยพระคุณเท่านั้น แต่ขอให้พระคุณนั้นออกมาเป็นผลในชีวิตของข้าพระองค์ด้วย จากความกตัญญู ไม่ใช่จากความกลัว อธิษฐานในพระนามพระเยซู อาเมน"
+},
+{
+ no:5, th:"การชำระให้ชอบธรรมและการชำระให้บริสุทธิ์", en:"Justification & Sanctification",
+ tag:"พระเจ้าทรงนับว่าเราชอบธรรมและทรงทำให้เราบริสุทธิ์",
+ review:"บทที่ 4: รอดโดยความเชื่อ และความเชื่อที่มีชีวิตแสดงออกมาเป็นการกระทำ",
+ sum:"ทรงประกาศให้ชอบธรรม และเปลี่ยนแปลงเราตลอดชีวิต",
+ intro:["หลายคนสงสัยว่า — 'ฉันเชื่อในพระเยซูแล้ว แต่ทำไมยังทำบาปอยู่? แสดงว่าฉันยังไม่ได้รับความรอดจริงๆ ใช่ไหม?' ความกังวลนี้ลึกมาก และพระคัมภีร์มีคำตอบที่ชัดเจนสำหรับมัน",
+ "พระเจ้าทรงทำสองสิ่งในชีวิตของเรา: สิ่งแรก — พระองค์ทรงประกาศให้เราชอบธรรมทันทีที่เราเชื่อ สมบูรณ์และยกเลิกไม่ได้ สิ่งที่สอง — พระองค์ทรงเปลี่ยนแปลงเราอย่างช้าๆ ตลอดชีวิต ให้เป็นเหมือนพระเยซูมากขึ้น",
+ "บทนี้เราจะเข้าใจว่าทำไมเราสามารถมั่นใจในความรอดได้ แม้ว่าเรายังไม่สมบูรณ์แบบ"],
+ leadQ:["ความแตกต่างระหว่าง 'ผู้พิพากษาประกาศว่าไม่มีความผิด' กับ 'คนนั้นใช้ชีวิตที่ดีขึ้นจริงๆ' คืออะไร?",
+ "หลังจากเชื่อในพระเยซู มีอะไรในชีวิตเปลี่ยนไปบ้าง? และมีส่วนไหนที่ยังไม่เปลี่ยนและทำให้หงุดหงิด?",
+ "เคยสงสัยว่า 'ฉันเชื่อแต่ทำไมยังทำบาปอยู่?' บ้างไหม?"],
+ verses:[
+  {ref:"โรม 5:1", txt:"เมื่อเราได้รับการนับว่าชอบธรรมโดยความเชื่อแล้ว เราจึงมีสันติสุขกับพระเจ้า โดยทางพระเยซูคริสต์"},
+  {ref:"ฟีลิปปี 1:6", txt:"พระองค์ผู้ทรงเริ่มต้นการดีในพวกท่านแล้ว จะทรงทำให้สำเร็จจนถึงวันแห่งพระเยซูคริสต์"},
+  {ref:"2 โครินธ์ 3:18", txt:"เราก็ถูกเปลี่ยนให้เป็นเหมือนพระฉายนั้น จากสิริสู่สิริ โดยพระวิญญาณของพระเจ้า"}],
+ deep:{stage3:[
+  {t:"① การชำระให้ชอบธรรม", d:"ทันทีที่เชื่อ สมบูรณ์ นิรันดร์"},
+  {t:"② การชำระให้บริสุทธิ์", d:"กระบวนการตลอดชีวิต"},
+  {t:"③ การยกย่องให้รุ่งโรจน์", d:"สมบูรณ์เมื่อพระเยซูกลับมา"}],
+  boxes:[
+  {t:"① การชำระให้ชอบธรรม — การประกาศในศาล", d:"พระเยซูทรงรับโทษบาปของเรา และความชอบธรรมของพระองค์ถูกโอนมาให้เรา พระเจ้าทรงประกาศว่าเรา 'ชอบธรรม' ครั้งเดียว สมบูรณ์ ยกเลิกไม่ได้"},
+  {t:"② การชำระให้บริสุทธิ์ — เส้นทางตลอดชีวิต", d:"ไม่ใช่การเป็นคนสมบูรณ์แบบ แต่เป็นการที่ทิศทางชีวิตหันหน้าสู่พระเยซู พระวิญญาณบริสุทธิ์ทรงทำงานในเรา และเราร่วมมือกับพระองค์"}]},
+ refQ:["ความจริงที่ว่าการชำระให้ชอบธรรมเกิดขึ้นทันทีและยกเลิกไม่ได้ ทำให้คุณรู้สึกอย่างไร?",
+ "ฟีลิปปี 1:6 — 'พระองค์ผู้ทรงเริ่มต้นจะทรงทำให้สำเร็จ' ตอนนี้พระเจ้ากำลังทำงานในส่วนไหนของชีวิตคุณ?",
+ "การชำระให้บริสุทธิ์คือ 'ทิศทางหันสู่พระเยซู' ไม่ใช่ความสมบูรณ์แบบ ตอนนี้ทิศทางชีวิตคุณหันสู่พระเยซูไหม?"],
+ apply:["ทุกเช้าพูดว่า 'ฉันเป็นลูกของพระเจ้าที่ได้รับการประกาศว่าชอบธรรมในพระเยซู'",
+ "มองหาสักหนึ่งอย่างที่คุณเติบโตเป็นเหมือนพระเยซูมากขึ้นในปีที่ผ่านมา แล้วขอบคุณพระเจ้า",
+ "นำส่วนหนึ่งในชีวิตที่ยังต้องการการเปลี่ยนแปลงมาอธิษฐานต่อพระวิญญาณบริสุทธิ์"],
+ prayer:"พระบิดา ขอบคุณที่ทรงประกาศว่าข้าพระองค์ชอบธรรมในพระเยซู บนรากฐานนั้น ขอให้ข้าพระองค์เดินในเส้นทางแห่งการชำระให้บริสุทธิ์ต่อไป พระวิญญาณบริสุทธิ์โปรดทรงทำงานในข้าพระองค์ อธิษฐานในพระนามพระเยซู อาเมน"
+},
+{
+ no:6, th:"ความตายและการฟื้นคืนชีพ", en:"Death & Resurrection",
+ tag:"ความหมายของไม้กางเขนและการฟื้นคืนชีพสำหรับฉัน",
+ review:"บทที่ 5: พระเจ้าทรงประกาศให้ชอบธรรม (ทันที) และทรงเปลี่ยนแปลงเราตลอดชีวิต (การชำระให้บริสุทธิ์)",
+ sum:"ความตายของพระเยซูคือเพื่อบาปของเรา การฟื้นคืนชีพคือชีวิตใหม่",
+ intro:["บทที่ 6 นี้คือหัวใจของทุกอย่างที่เราได้เรียนมา — บาปต้องการการไถ่ พระเจ้าทรงรักเรา และความรักนั้นได้สำแดงออกมาอย่างสูงสุดที่ไม้กางเขน",
+ "ในพุทธศาสนา ความตายคือจุดเริ่มต้นของวัฏสงสารที่ไม่มีที่สิ้นสุด แต่พระคัมภีร์ประกาศว่า ความตายของพระเยซูไม่ใช่ความพ่ายแพ้ — มันคือชัยชนะ และการฟื้นคืนชีพคือหลักฐานที่พระเจ้าทรงประทับตราว่า 'สำเร็จแล้ว'",
+ "บทสุดท้ายของภาค 1 นี้ เราจะมาค้นพบว่าความตายและการฟื้นคืนชีพของพระเยซูเปลี่ยนแปลงทุกสิ่ง — รวมถึงชีวิตของคุณด้วย"],
+ leadQ:["เมื่อได้ยินคำว่า 'ความตาย' คุณรู้สึกอย่างไร? ในวัฒนธรรมไทย ความตายถูกเข้าใจอย่างไร?",
+ "เคยได้ยินเรื่องของคนที่เสียสละชีวิตเพื่อคนอื่นบ้างไหม? ทำให้คุณรู้สึกอย่างไร?"],
+ verses:[
+  {ref:"อิสยาห์ 53:5 — คำพยากรณ์ 700 ปีก่อน", txt:"เขาถูกแทงเพราะการล่วงละเมิดของเรา เขาถูกโบยเพราะความชั่วของเรา การตีสอนที่ทำให้เรามีสันติสุขนั้นตกแก่เขา และด้วยบาดแผลของเขานั้น เราทั้งหลายได้รับการรักษา"},
+  {ref:"โรม 5:8", txt:"พระเจ้าทรงสำแดงความรักของพระองค์แก่เราในการที่พระคริสต์ทรงสิ้นพระชนม์เพื่อเราในขณะที่เราทั้งหลายยังเป็นคนบาปอยู่"},
+  {ref:"1 โครินธ์ 15:3-4 — หัวใจของข่าวประเสริฐ", txt:"พระคริสต์ได้สิ้นพระชนม์เพื่อบาปของเราทั้งหลายตามที่มีเขียนไว้ในพระคัมภีร์ และทรงถูกฝังไว้ และในวันที่สามพระองค์ทรงฟื้นคืนพระชนม์"},
+  {ref:"ยอห์น 11:25", txt:"เราเป็นการฟื้นคืนชีพและเป็นชีวิต ผู้ที่วางใจในเราถึงแม้ว่าจะตายแล้วก็จะมีชีวิต"}],
+ deep:{compare:{
+  a:{t:"🪷 วัฏสงสาร (พุทธ)", d:"ความตายคือวงจรที่ต่อเนื่อง ชาติหน้าขึ้นอยู่กับกรรม ต้องพยายามสะสมบุญต่อไป"},
+  b:{t:"✝️ การฟื้นคืนชีพ (พระคัมภีร์)", d:"ความตายมีการพิพากษา ผู้ที่เชื่อในพระเยซูมีคำสัญญาแห่งการฟื้นคืนชีพและชีวิตนิรันดร์"}},
+  boxes:[{t:"การฟื้นคืนชีพให้ความหมาย 3 ประการ", d:"① ความมั่นใจในการอภัยบาป: พระเยซูฟื้นคืนชีพ = พิสูจน์ว่าบาปถูกแก้แล้ว ② ชีวิตใหม่ตอนนี้: เราสามารถดำเนิน 'ชีวิตใหม่' ได้แล้วในวันนี้ (โรม 6:4) ③ ความหวังในอนาคต: พระเยซูคือ 'ผลแรก' เราจะฟื้นคืนชีพเหมือนพระองค์ด้วย"}]},
+ refQ:["โรม 5:8 บอกว่า 'ในขณะที่ยังเป็นคนบาปอยู่' พระเยซูสิ้นพระชนม์เพื่อเรา ไม่ใช่หลังจากที่เราดีขึ้น สิ่งนี้มีความหมายอย่างไรสำหรับคุณ?",
+ "ความเชื่อในการฟื้นคืนชีพทำให้ชีวิตประจำวันของคุณแตกต่างอย่างไร?",
+ "ยอห์น 11:25 พระเยซูถามว่า 'เจ้าเชื่อสิ่งนี้ไหม?' ถ้าพระองค์ถามคุณตอนนี้ คุณจะตอบอย่างไร?",
+ "วัฏสงสารกับการฟื้นคืนชีพแตกต่างกันอย่างไร? คุณจะอธิบายความหวังนี้ให้เพื่อนชาวไทยฟังอย่างไร?"],
+ apply:["ท่องจำ 1 โครินธ์ 15:3-4 หัวใจของข่าวประเสริฐ แล้วบอกข่าวดีนี้กับเพื่อนหนึ่งคน",
+ "ใช้เวลาเงียบๆ ไตร่ตรองถึงไม้กางเขน 'พระเยซูสิ้นพระชนม์เพื่อฉัน' รู้สึกอย่างไร?",
+ "อ่าน ยอห์น 11:25 ออกเสียงทุกเช้า และเริ่มวันด้วยความหวังแห่งการฟื้นคืนชีพ"],
+ prayer:"พระบิดา ข้าพระองค์เชื่อว่าพระเยซูสิ้นพระชนม์เพื่อบาปของข้าพระองค์และทรงฟื้นคืนพระชนม์ ขอให้ข้าพระองค์มีชีวิตด้วยความหวังแห่งการฟื้นคืนชีพ และอยากบอกข่าวดีนี้แก่ครอบครัวและเพื่อนชาวไทยด้วย อธิษฐานในพระนามพระเยซู อาเมน"
+}
+];
+
+/* ════════════════════════════════════════════
+   STORAGE  (claude.ai artifact → window.storage,
+             เว็บโฮสติ้ง → localStorage, สำรอง → memory)
+════════════════════════════════════════════ */
+const mem = {};
+const store = {
+  async get(){
+    if (typeof window.storage !== "undefined" && window.storage){
+      try{ const r = await window.storage.get(STORE_KEY); if(r && r.value) return JSON.parse(r.value); }catch(e){}
+    }
+    try{ const v = localStorage.getItem(STORE_KEY); if(v) return JSON.parse(v); }catch(e){}
+    return mem[STORE_KEY] || null;
+  },
+  async set(obj){
+    const v = JSON.stringify(obj);
+    mem[STORE_KEY] = obj;
+    if (typeof window.storage !== "undefined" && window.storage){
+      try{ await window.storage.set(STORE_KEY, v); return; }catch(e){}
+    }
+    try{ localStorage.setItem(STORE_KEY, v); }catch(e){}
+  }
+};
+
+/* ════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════ */
+let state = {
+  name:"", startDate:"",
+  completed:[false,false,false,false,false,false],
+  completedAt:["","","","","",""],
+  answers:{}   // answers["1_lead_0"] = "..."
+};
+let currentLesson = -1;
+let sending = false;
+
+/* ════════════════════════════════════════════
+   VIEWS
+════════════════════════════════════════════ */
+const $ = id => document.getElementById(id);
+function show(viewId){
+  ["viewCover","viewContents","viewLesson","viewSummary","viewRecords"].forEach(v=>$(v).classList.add("hidden"));
+  $(viewId).classList.remove("hidden");
+  $("homeBtn").classList.toggle("hidden", viewId==="viewCover");
+  window.scrollTo({top:0});
+}
+
+function startCourse(){
+  const n = $("inpName").value.trim();
+  if(!n){ openModal("✋","กรุณากรอกชื่อ","ต้องกรอกชื่อ-นามสกุลก่อนเริ่มเรียน เพื่อให้อาจารย์ทราบว่าใครเรียนจบแต่ละบท"); return; }
+  state.name = n;
+  state.startDate = $("inpDate").value || new Date().toISOString().slice(0,10);
+  store.set(state);
+  goContents();
+}
+
+function goContents(){
+  saveCurrentAnswers();
+  renderContents();
+  show("viewContents");
+}
+
+function renderContents(){
+  const doneCount = state.completed.filter(Boolean).length;
+  $("studentLine").innerHTML = `ผู้เรียน: <b>${esc(state.name)}</b> · เริ่มเรียน ${esc(state.startDate)} · เรียนจบแล้ว ${doneCount}/6 บท`;
+  $("progFill").style.width = (doneCount/6*100) + "%";
+
+  let html = "";
+  LESSONS.forEach((L,i)=>{
+    const done = state.completed[i];
+    const locked = i>0 && !state.completed[i-1];
+    const cls = done ? "done" : (locked ? "locked" : "");
+    const mark = done ? "✓" : (locked ? "🔒" : "→");
+    html += `<button class="lesson-item ${cls}" ${locked?"disabled":""} onclick="openLesson(${i})">
+      <span class="num">${L.no}</span>
+      <span class="t"><span class="th">${esc(L.th)}</span><br><span class="en">${esc(L.en)}</span></span>
+      <span class="mark">${mark}</span>
+    </button>`;
+  });
+  if (state.completed.every(Boolean)){
+    html += `<button class="lesson-item done" onclick="openSummary()">
+      <span class="num">🎉</span>
+      <span class="t"><span class="th">สรุปภาค 1 — เรียนจบครบทุกบทแล้ว!</span><br><span class="en">Course Summary</span></span>
+      <span class="mark">★</span>
+    </button>`;
+  }
+  $("lessonList").innerHTML = html;
+  $("recordsBtnWrap").innerHTML = `<button class="btn-records" onclick="openRecords()">📒 บันทึกของฉัน · คำตอบทุกบท</button>`;
+}
+
+/* ════════════════════════════════════════════
+   LESSON RENDER
+════════════════════════════════════════════ */
+function openLesson(i){
+  if (i>0 && !state.completed[i-1]) return;
+  currentLesson = i;
+  const L = LESSONS[i];
+  const done = state.completed[i];
+  let h = `
+  <div class="lesson-head">
+    <div class="crumb">ภาค 1 · รากฐานแห่งความเชื่อ · บทที่ ${L.no}/6</div>
+    <h2>${esc(L.th)}</h2>
+    <div class="tag">${esc(L.tag)}</div>
+  </div>`;
+
+  if (L.review) h += `<div class="review">📌 <b>ทบทวน</b> — ${esc(L.review)}</div>`;
+
+  h += `<div class="sec"><h3>🔑 บทนำ</h3><div class="intro-box">${L.intro.map(p=>`<p>${esc(p)}</p>`).join("")}</div></div>`;
+
+  h += `<div class="sec"><h3>💬 คำถามนำ</h3>`;
+  L.leadQ.forEach((q,qi)=>{ h += qBlock(i,"lead",qi,q); });
+  h += `</div>`;
+
+  h += `<div class="sec"><h3>📖 อ่านพระคัมภีร์</h3>
+    <p class="sec-hint" style="font-size:14.5px;margin-bottom:10px">อ่านพร้อมกัน — สังเกตคำที่ประทับใจ</p>`;
+  L.verses.forEach(v=>{ h += `<div class="verse"><div class="ref">📖 ${esc(v.ref)}</div><div class="txt">${esc(v.txt)}</div></div>`; });
+  h += `<div class="q-block"><div class="q"><span class="qn">📌</span><span>ข้อที่ประทับใจของฉัน:</span></div>
+        <textarea data-key="${i}_verse_0" style="min-height:60px" placeholder="เขียนข้อพระคัมภีร์หรือคำที่ประทับใจ...">${escAns(i+"_verse_0")}</textarea></div></div>`;
+
+  h += `<div class="sec"><h3>🔍 เข้าใจให้ลึกขึ้น</h3>`;
+  const D = L.deep;
+  if (D.stage3){
+    h += `<div class="stage3">`;
+    D.stage3.forEach((s,si)=>{
+      h += `<div class="st-box"><b>${esc(s.t)}</b>${esc(s.d)}</div>`;
+      if (si < D.stage3.length-1) h += `<div class="ar">→</div>`;
+    });
+    h += `</div>`;
+  }
+  if (D.compare){
+    h += `<div class="compare">
+      <div class="side buddhist"><div class="st">${esc(D.compare.a.t)}</div>${esc(D.compare.a.d)}</div>
+      <div class="arrow">↔</div>
+      <div class="side bible"><div class="st">${esc(D.compare.b.t)}</div>${esc(D.compare.b.d)}</div>
+    </div>`;
+  }
+  if (D.boxes) D.boxes.forEach(b=>{ h += `<div class="deep-box"><div class="dt">${esc(b.t)}</div>${esc(b.d)}</div>`; });
+  h += `</div>`;
+
+  h += `<div class="sec"><h3>💬 คำถามสะท้อนชีวิต</h3>`;
+  L.refQ.forEach((q,qi)=>{ h += qBlock(i,"ref",qi,q); });
+  h += `</div>`;
+
+  h += `<div class="sec"><h3>✍️ การประยุกต์และการอธิษฐาน</h3>
+    <p style="font-weight:600;font-size:15px;margin-bottom:9px">เลือกข้อปฏิบัติสำหรับสัปดาห์นี้</p>
+    <ul class="apply-list">${L.apply.map(a=>`<li>${esc(a)}</li>`).join("")}</ul>
+    <div class="q-block" style="margin-top:14px"><div class="q"><span class="qn">📌</span><span>การตัดสินใจของฉัน:</span></div>
+    <textarea data-key="${i}_decide_0" style="min-height:60px" placeholder="สัปดาห์นี้ฉันจะ...">${escAns(i+"_decide_0")}</textarea></div>
+  </div>`;
+
+  h += `<div class="sec"><div class="prayer"><div class="pt">🙏 ให้เราอธิษฐานด้วยกัน</div>${esc(L.prayer)}</div></div>`;
+
+  h += `<div class="finish-zone" id="finishZone">`;
+  if (done){
+    h += `<div class="done-banner">✓ เรียนจบบทนี้แล้ว (${esc(state.completedAt[i])})<br>ส่งอีเมลแจ้งอาจารย์เรียบร้อย</div>`;
+  } else {
+    h += `<p class="finish-note">เมื่อกดปุ่มนี้ ระบบจะบันทึกการเรียนจบ<br>และส่งอีเมลแจ้งอาจารย์พร้อมคำตอบของคุณ</p>
+    <button class="btn-finish" id="btnFinish" onclick="finishLesson()">✓ เรียนจบบทที่ ${L.no} · 마침</button>`;
+  }
+  h += `</div>`;
+
+  h += `<div class="nav-row">
+    <button onclick="goContents()">← สารบัญ</button>
+    ${done && i<5 ? `<button onclick="openLesson(${i+1})">บทที่ ${L.no+1} →</button>` : ""}
+    ${done && i===5 ? `<button onclick="openSummary()">สรุปภาค 1 →</button>` : ""}
+  </div>`;
+
+  $("viewLesson").innerHTML = h;
+  attachAutosave();
+  show("viewLesson");
+}
+
+function qBlock(li, kind, qi, text){
+  const key = `${li}_${kind}_${qi}`;
+  return `<div class="q-block">
+    <div class="q"><span class="qn">Q${qi+1}</span><span>${esc(text)}</span></div>
+    <textarea data-key="${key}" placeholder="เขียนคำตอบของคุณ...">${escAns(key)}</textarea>
+  </div>`;
+}
+
+function attachAutosave(){
+  document.querySelectorAll("#viewLesson textarea[data-key]").forEach(t=>{
+    t.addEventListener("change", ()=>{ state.answers[t.dataset.key] = t.value; store.set(state); });
+  });
+}
+function saveCurrentAnswers(){
+  document.querySelectorAll("#viewLesson textarea[data-key]").forEach(t=>{
+    state.answers[t.dataset.key] = t.value;
+  });
+  store.set(state);
+}
+
+/* ════════════════════════════════════════════
+   FINISH & EMAIL
+════════════════════════════════════════════ */
+async function finishLesson(){
+  if (sending) return;
+  const i = currentLesson, L = LESSONS[i];
+  saveCurrentAnswers();
+
+  sending = true;
+  const btn = $("btnFinish");
+  if (btn){ btn.disabled = true; btn.textContent = "กำลังส่งอีเมลแจ้งอาจารย์..."; }
+
+  const now = new Date();
+  const stamp = now.toLocaleString("th-TH", {dateStyle:"medium", timeStyle:"short"});
+
+  const subject = `[${COURSE_NAME}] ${state.name} — บทที่ ${L.no} เรียนจบแล้ว (${L.no}과 이수 완료)`;
+  const body = buildEmailBody(i, stamp);
+  const method = await sendMail(subject, body);
+
+  state.completed[i] = true;
+  state.completedAt[i] = stamp;
+  await store.set(state);
+  sending = false;
+
+  const nextMsg = i<5 ? `บทที่ ${L.no+1} "${LESSONS[i+1].th}" เปิดให้เรียนแล้ว` : "คุณเรียนจบครบทั้ง 6 บทแล้ว! 🎓";
+  if (method === "auto"){
+    openModal("🎉", `เรียนจบบทที่ ${L.no} แล้ว!`, `ส่งอีเมลแจ้งอาจารย์เรียบร้อยแล้ว<br>${nextMsg}`);
+  } else {
+    openModal("📮", `เรียนจบบทที่ ${L.no} แล้ว!`, `ระบบเปิดแอปอีเมลให้แล้ว กรุณากด "ส่ง" ในแอปอีเมลเพื่อแจ้งอาจารย์<br>${nextMsg}`);
+  }
+  openLesson(i); // rerender as done
+}
+
+function buildEmailBody(i, stamp){
+  const L = LESSONS[i];
+  let b = `✝️ ${COURSE_NAME} — แจ้งการเรียนจบบทเรียน\n`;
+  b += `━━━━━━━━━━━━━━━━━━━━\n`;
+  b += `ผู้เรียน: ${state.name}\n`;
+  b += `บทเรียน: บทที่ ${L.no} — ${L.th} (${L.en})\n`;
+  b += `เวลาเรียนจบ: ${stamp}\n`;
+  b += `ความคืบหน้า: ${state.completed.filter(Boolean).length + 1}/6 บท\n`;
+  b += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+  b += `【คำตอบของผู้เรียน】\n\n`;
+  L.leadQ.forEach((q,qi)=>{
+    b += `💬 คำถามนำ Q${qi+1}: ${q}\n→ ${ans(i,"lead",qi)}\n\n`;
+  });
+  b += `📌 ข้อที่ประทับใจ:\n→ ${state.answers[i+"_verse_0"] || "(ไม่ได้กรอก)"}\n\n`;
+  L.refQ.forEach((q,qi)=>{
+    b += `💬 คำถามสะท้อนชีวิต Q${qi+1}: ${q}\n→ ${ans(i,"ref",qi)}\n\n`;
+  });
+  b += `📌 การตัดสินใจของฉัน:\n→ ${state.answers[i+"_decide_0"] || "(ไม่ได้กรอก)"}\n`;
+  return b;
+}
+function ans(i,kind,qi){ return state.answers[`${i}_${kind}_${qi}`] || "(ไม่ได้กรอก)"; }
+
+/* ════════════════════════════════════════════
+   RECORDS (บันทึกของฉัน)
+════════════════════════════════════════════ */
+function lessonHasContent(i){
+  const L = LESSONS[i];
+  const keys = [];
+  L.leadQ.forEach((_,qi)=>keys.push(`${i}_lead_${qi}`));
+  keys.push(`${i}_verse_0`);
+  L.refQ.forEach((_,qi)=>keys.push(`${i}_ref_${qi}`));
+  keys.push(`${i}_decide_0`);
+  return state.completed[i] || keys.some(k=>(state.answers[k]||"").trim());
+}
+
+function recQA(q, val){
+  const has = (val||"").trim();
+  return `<div class="rec-qa"><div class="rq">${esc(q)}</div>
+    <div class="ra ${has?"":"empty"}">${has?esc(val):"(ยังไม่ได้เขียน)"}</div></div>`;
+}
+
+function openRecords(){
+  saveCurrentAnswers();
+  let h = `<h2 style="font-size:24px;color:var(--teal-dark);margin:26px 0 4px" class="rec-title">📒 บันทึกของฉัน</h2>
+  <p class="student-line">ผู้เรียน: <b>${esc(state.name)}</b> · คำตอบทั้งหมดที่เขียนไว้ในแต่ละบท</p>
+  <div class="rec-topactions">
+    <button onclick="copyAllRecords()">📋 คัดลอกทั้งหมด (ส่งทาง LINE ได้)</button>
+    <button onclick="emailAllRecords()">✉️ ส่งบันทึกทั้งหมดให้อาจารย์</button>
+  </div>`;
+
+  let any = false;
+  LESSONS.forEach((L,i)=>{
+    if(!lessonHasContent(i)) return;
+    any = true;
+    h += `<div class="rec-lesson">
+      <div class="rl-head">
+        <div class="n">${L.no}</div>
+        <div class="tt"><b>${esc(L.th)}</b>
+          <span>${state.completed[i] ? "✓ เรียนจบแล้ว · " + esc(state.completedAt[i]) : "กำลังเรียน (ยังไม่จบบท)"}</span>
+        </div>
+      </div>`;
+    L.leadQ.forEach((q,qi)=>{ h += recQA("💬 " + q, state.answers[`${i}_lead_${qi}`]); });
+    h += recQA("📌 ข้อพระคัมภีร์ที่ประทับใจ", state.answers[`${i}_verse_0`]);
+    L.refQ.forEach((q,qi)=>{ h += recQA("💬 " + q, state.answers[`${i}_ref_${qi}`]); });
+    h += recQA("📌 การตัดสินใจของฉัน", state.answers[`${i}_decide_0`]);
+    h += `<div class="rec-actions">
+      <button class="copy1" onclick="copyLessonRecord(${i})">📋 คัดลอกบทนี้</button>
+      <button class="resend" onclick="resendLesson(${i})">✉️ ส่งอีเมลบทนี้อีกครั้ง</button>
+    </div></div>`;
+  });
+  if ((state.answers["final_impress"]||"").trim()){
+    h += `<div class="rec-lesson"><div class="rl-head"><div class="n">★</div>
+      <div class="tt"><b>สรุปภาค 1</b><span>ความประทับใจ</span></div></div>`
+      + recQA("📌 สิ่งที่ประทับใจฉันมากที่สุดในภาค 1", state.answers["final_impress"]) + `</div>`;
+  }
+  if(!any) h += `<div class="rec-empty">ยังไม่มีบันทึก<br>เริ่มเรียนบทที่ 1 แล้วเขียนคำตอบของคุณได้เลย ✍️</div>`;
+
+  h += `<div class="nav-row"><button onclick="goContents()">← กลับสารบัญ</button></div>`;
+  $("viewRecords").innerHTML = h;
+  show("viewRecords");
+}
+
+function buildRecordText(i){
+  const L = LESSONS[i];
+  let b = `📖 บทที่ ${L.no} — ${L.th}\n`;
+  b += state.completed[i] ? `✓ เรียนจบแล้ว (${state.completedAt[i]})\n` : `(กำลังเรียน)\n`;
+  b += `──────────────\n`;
+  L.leadQ.forEach((q,qi)=>{ b += `💬 ${q}\n→ ${ans(i,"lead",qi)}\n\n`; });
+  b += `📌 ข้อที่ประทับใจ:\n→ ${state.answers[i+"_verse_0"]||"(ไม่ได้กรอก)"}\n\n`;
+  L.refQ.forEach((q,qi)=>{ b += `💬 ${q}\n→ ${ans(i,"ref",qi)}\n\n`; });
+  b += `📌 การตัดสินใจของฉัน:\n→ ${state.answers[i+"_decide_0"]||"(ไม่ได้กรอก)"}\n`;
+  return b;
+}
+
+function buildAllRecordsText(){
+  let b = `✝️ ${COURSE_NAME} — บันทึกของ ${state.name}\n`;
+  b += `เริ่มเรียน ${state.startDate} · จบแล้ว ${state.completed.filter(Boolean).length}/6 บท\n`;
+  b += `━━━━━━━━━━━━━━\n\n`;
+  LESSONS.forEach((L,i)=>{ if(lessonHasContent(i)) b += buildRecordText(i) + "\n"; });
+  if ((state.answers["final_impress"]||"").trim())
+    b += `★ สิ่งที่ประทับใจที่สุดในภาค 1:\n→ ${state.answers["final_impress"]}\n`;
+  return b;
+}
+
+async function copyText(t, okMsg){
+  try{
+    await navigator.clipboard.writeText(t);
+    openModal("📋","คัดลอกแล้ว", okMsg);
+  }catch(e){
+    openModal("⚠️","คัดลอกไม่สำเร็จ","อุปกรณ์นี้ไม่รองรับการคัดลอกอัตโนมัติ กรุณาใช้ปุ่มส่งอีเมลแทน");
+  }
+}
+function copyLessonRecord(i){ copyText(buildRecordText(i), "คัดลอกบันทึกบทนี้แล้ว นำไปวางใน LINE หรือ KakaoTalk เพื่อส่งให้อาจารย์ได้เลย"); }
+function copyAllRecords(){ copyText(buildAllRecordsText(), "คัดลอกบันทึกทั้งหมดแล้ว นำไปวางใน LINE หรือ KakaoTalk เพื่อส่งให้อาจารย์ได้เลย"); }
+
+async function sendMail(subject, bodyText){
+  try{
+    const res = await fetch("https://formsubmit.co/ajax/" + NOTIFY_EMAIL, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+      body: JSON.stringify({ _subject: subject, _template:"box", ผู้เรียน: state.name, บันทึก: bodyText })
+    });
+    if (res.ok) return "auto";
+    throw new Error("formsubmit failed");
+  }catch(e){
+    window.location.href = `mailto:${NOTIFY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+    return "mailto";
+  }
+}
+
+async function resendLesson(i){
+  const L = LESSONS[i];
+  const m = await sendMail(`[${COURSE_NAME}] ${state.name} — บันทึกบทที่ ${L.no} (기록 재전송)`, buildRecordText(i));
+  openModal(m==="auto"?"✉️":"📮","ส่งบันทึกแล้ว",
+    m==="auto" ? "ส่งบันทึกบทนี้ถึงอาจารย์ทางอีเมลเรียบร้อยแล้ว"
+               : "ระบบเปิดแอปอีเมลให้แล้ว กรุณากด \"ส่ง\" เพื่อส่งบันทึกถึงอาจารย์");
+}
+async function emailAllRecords(){
+  const m = await sendMail(`[${COURSE_NAME}] ${state.name} — บันทึกทั้งหมด (전체 기록)`, buildAllRecordsText());
+  openModal(m==="auto"?"✉️":"📮","ส่งบันทึกแล้ว",
+    m==="auto" ? "ส่งบันทึกทั้งหมดถึงอาจารย์ทางอีเมลเรียบร้อยแล้ว"
+               : "ระบบเปิดแอปอีเมลให้แล้ว กรุณากด \"ส่ง\" เพื่อส่งบันทึกถึงอาจารย์");
+}
+
+/* ════════════════════════════════════════════
+   SUMMARY
+════════════════════════════════════════════ */
+function openSummary(){
+  let h = `<div class="confetti-head">
+    <div class="big">🎉</div>
+    <h2>สรุปภาค 1 — รากฐานแห่งความเชื่อ</h2>
+    <p>ยินดีด้วย <b>${esc(state.name)}</b>! คุณเรียนจบครบทั้ง 6 บทแล้ว</p>
+  </div>`;
+  LESSONS.forEach(L=>{
+    h += `<div class="sum-item"><div class="n">${L.no}</div><div class="tt"><b>${esc(L.th)}</b><span>${esc(L.sum)}</span></div></div>`;
+  });
+  h += `<div class="card" style="margin-top:20px">
+    <label>📌 สิ่งที่ประทับใจฉันมากที่สุดในภาค 1 คือ</label>
+    <textarea data-key="final_impress" placeholder="เขียนความประทับใจของคุณ...">${escAns("final_impress")}</textarea>
+  </div>
+  <div class="nav-row"><button onclick="goContents()">← กลับสารบัญ</button></div>`;
+  $("viewSummary").innerHTML = h;
+  document.querySelectorAll("#viewSummary textarea[data-key]").forEach(t=>{
+    t.addEventListener("change", ()=>{ state.answers[t.dataset.key] = t.value; store.set(state); });
+  });
+  show("viewSummary");
+}
+
+/* ════════════════════════════════════════════
+   MODAL & UTIL
+════════════════════════════════════════════ */
+function openModal(icon,title,body){
+  $("mIcon").textContent = icon;
+  $("mTitle").textContent = title;
+  $("mBody").innerHTML = body;
+  $("modalBg").classList.remove("hidden");
+}
+function closeModal(){ $("modalBg").classList.add("hidden"); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function escAns(key){ return esc(state.answers[key] || ""); }
+
+/* ════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════ */
+(async function init(){
+  $("inpDate").value = new Date().toISOString().slice(0,10);
+  const saved = await store.get();
+  if (saved && saved.name){
+    state = Object.assign(state, saved);
+    goContents();
+  } else {
+    show("viewCover");
+  }
+})();
+</script>
+</body>
+</html>
